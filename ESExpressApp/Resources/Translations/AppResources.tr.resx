@@ -210,9 +210,6 @@
   <data name="ls_Phone" xml:space="preserve">
     <value>Telefon</value>
   </data>
-  <data name="ls_Signin" xml:space="preserve">
-    <value>Giriş yap</value>
-  </data>
   <data name="ls_Register" xml:space="preserve">
     <value>Kayıt olmak</value>
   </data>

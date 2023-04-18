@@ -10,11 +10,6 @@ public partial class ChangePasswordPage : ContentPage
     private BorderlessEntry entryOldPassword;
     private BorderlessEntry entryPassword;
     private BorderlessEntry entryConfirmPassword;
-    private BorderlessEntry entryVerifyCode_1;
-    private BorderlessEntry entryVerifyCode_2;
-    private BorderlessEntry entryVerifyCode_3;
-    private BorderlessEntry entryVerifyCode_4;
-    private BorderlessEntry entryVerifyCode_5;
     private bool isCheckingVeriftyCode = false;
     private bool isAppearing = false;
     private readonly ILocalizationResourceManager resourceManager;

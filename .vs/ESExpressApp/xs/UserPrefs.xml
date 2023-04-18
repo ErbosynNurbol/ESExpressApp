@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{3483997C-E47A-4AAF-AB92-43F3F3EA31FA}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ESExpressApp/Views/ChangePasswordPage.xaml.cs">
+    <Files>
+      <File FileName="ESExpressApp/MauiProgram.cs" Line="11" Column="47" />
+      <File FileName="ESExpressApp/ESExpressApp.csproj" Line="198" Column="17" />
+      <File FileName="../../../../../usr/local/share/dotnet/sdk/7.0.203/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets" Line="266" Column="5" />
+      <File FileName="ESExpressApp/Views/LoginPage.xaml" Line="1" Column="1" />
+      <File FileName="ESExpressApp/Resources/Translations/AppResources.resx" Line="1" Column="1" />
+      <File FileName="ESExpressApp/Helpers/APIHelper.cs" Line="96" Column="22" />
+      <File FileName="ESExpressApp/Views/ChangePasswordPage.xaml.cs" Line="12" Column="50" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ESExpressApp" expanded="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.ESExpressApp PreferredExecutionTarget="Android.tablet_m-dpi_10_1in_-_api_33" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.tablet_m-dpi_10_1in_-_api_33" />
+  <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.46" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

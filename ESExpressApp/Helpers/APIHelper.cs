@@ -93,7 +93,7 @@ namespace ESExpressApp.Helpers
                         ajaxMsg = JsonHelper.DeserializeObject<AjaxMsgModel>(returnValue);
                     }
                 }
-                catch(Exception ex)
+                catch
                 {
                     ajaxMsg = null;
                 }

@@ -1,10 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
-		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
-		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
+		<TargetFrameworks>net7.0-android;net7.0-ios16.1;net7.0-maccatalyst</TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>ESExpressApp</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -41,9 +38,6 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
-
-		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
 
@@ -167,6 +161,8 @@
 	  <None Remove="Resources\Images\logo.png" />
 	  <None Remove="Resources\Images\train.png" />
 	  <None Remove="Resources\.DS_Store" />
+	  <None Remove="Resources\Splash\" />
+	  <None Remove="Resources\Splash\esexpress.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Images\truct.png" />
@@ -187,4 +183,20 @@
 	  <BundleResource Include="Resources\Images\train.png" />
 	  <BundleResource Include="Resources\.DS_Store" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Resources\Splash\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiSplashScreen Include="Resources\Splash\esexpress.svg" Color="#ffffff" />
+	</ItemGroup>
+	<PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
+    <AndroidKeyStore>True</AndroidKeyStore>
+    <AndroidSigningKeyStore>..\Keystore\esexpress.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>dnLRRZKcjbey87a</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>esexpress</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>dnLRRZKcjbey87a</AndroidSigningKeyPass>
+</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-maccatalyst|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	</PropertyGroup>
 </Project>
