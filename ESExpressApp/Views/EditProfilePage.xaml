@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             xmlns:localization="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
+             xmlns:customControls="clr-namespace:ESExpressApp.CustomControls"
+             xmlns:viewmodels="clr-namespace:ESExpressApp.ViewModels"
+             BackgroundColor="White"
+             Shell.TabBarIsVisible="False"
+             x:DataType="viewmodels:EditProfilePageViewModel"
+             x:Class="ESExpressApp.Views.EditProfilePage"
+             Title="{localization:Translate ls_Editprofile}">
+    <StackLayout
+        Orientation="Vertical"
+        mct:StateContainer.CurrentState="{Binding CurrentState}"
+        mct:StateContainer.CanStateChange="{Binding CanStateChange}">
+        <mct:StateContainer.StateViews>
+             <VerticalStackLayout mct:StateView.StateKey="Loading" BackgroundColor="White" VerticalOptions="FillAndExpand">
+                  <customControls:LoadingControl VerticalOptions="FillAndExpand" />
+            </VerticalStackLayout>
+            <VerticalStackLayout mct:StateView.StateKey="Offline" VerticalOptions="FillAndExpand" BackgroundColor="White">
+               <customControls:ErrorControl Title="{localization:Translate ls_Connectionerror}" Description="{localization:Translate ls_Pcyicta}" Icon="{x:Static fontAwesome:FontAwesomeIcons.WifiSlash}" RetryCommand="{Binding RetryCommand}" />
+            </VerticalStackLayout>
+              <VerticalStackLayout mct:StateView.StateKey="Error" VerticalOptions="FillAndExpand" BackgroundColor="White">
+               <customControls:ErrorControl Title="{localization:Translate ls_Error}" Description="{localization:Translate ls_Oopserror}" Icon="{x:Static fontAwesome:FontAwesomeIcons.Bug}" RetryCommand="{Binding RetryCommand}" />
+            </VerticalStackLayout>
+              <RefreshView mct:StateView.StateKey="Success" IsRefreshing="{Binding IsRefreshing}"  Command="{Binding RefreshCommand}"  VerticalOptions="FillAndExpand" >
+                     <ScrollView  VerticalScrollBarVisibility="Never">
+                        <StackLayout VerticalOptions="FillAndExpand" Orientation="Vertical" Padding="10,30,10,0">
+                              <Grid>
+                                  <mct:AvatarView ImageSource="{Binding Person.AvatarUrl}" HorizontalOptions="Center" HeightRequest="106" WidthRequest="106" CornerRadius="53" />
+                                  <Frame  CornerRadius="19" Margin="0,0,-50,0" Padding="5"  WidthRequest="38" HeightRequest="38" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="#ffffff" HasShadow="True"  >
+                                     <Label Text="{x:Static fontAwesome:FontAwesomeIcons.CameraRetro}"
+                                        x:Name="lblUploadAvatar"
+                                        FontFamily="fregular"
+                                        FontAttributes="Bold"
+                                        TextColor="{StaticResource Primary}"
+                                        FontSize="20"
+                                        HorizontalTextAlignment="Center"
+                                        VerticalTextAlignment="Center" />
+                                </Frame>
+                              </Grid>
+                        <StackLayout Orientation="Vertical" Spacing="5">
+                          <Label Text="{localization:Translate ls_Phone}" Margin="10,0" VerticalTextAlignment="End" HeightRequest="30"/>
+                        <StackLayout Orientation="Horizontal" HeightRequest="20" Spacing="0" Margin="10,0">
+                            <Label Text="{Binding Person.Phone}"   />
+                            <Label Text=" ( "  />
+                            <Label x:Name="lblChangePhoneNumber" Text="{localization:Translate ls_Changephonenumber}" TextColor="{StaticResource linkColor}" >
+                                   <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ChangePhoneNumberCommand}"></TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                            </Label>
+                            <Label Text=" )" />
+                        </StackLayout>
+                        </StackLayout>
+                            <StackLayout Orientation="Vertical" Spacing="5">
+                                <Label Text="{localization:Translate ls_Yourname}" Margin="10,0" VerticalTextAlignment="End" HeightRequest="30"/>
+                                <customControls:StandardEntryControl Text="{Binding Person.RealName}" />
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Spacing="5">
+                               <Label Text="{localization:Translate ls_District}" Margin="10,0" VerticalTextAlignment="End" HeightRequest="30"/>
+                               <customControls:StandardEntryControl Text="{Binding Person.City}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Spacing="5">
+                                <Label Text="WhatsApp" VerticalTextAlignment="End" Margin="10,0" HeightRequest="30"/>
+                               <customControls:StandardEntryControl Text="{Binding Person.WhatsApp}" HorizontalOptions="FillAndExpand" />
+                            </StackLayout>
+                             <StackLayout Orientation="Vertical" Spacing="5">
+                                 <Label Text="{localization:Translate ls_Secondaryphone}" Margin="10,0" VerticalTextAlignment="End" HeightRequest="30"/>
+                                 <customControls:StandardEntryControl Text="{Binding Person.SecondaryPhone}"  />
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical">
+                                 <Button Text="{localization:Translate ls_Save}" HeightRequest="58" FontSize="20" Margin="10,15" CornerRadius="14" TextColor="White" BackgroundColor="{StaticResource Primary}" Command="{Binding SaveCommand}"  />
+                            </StackLayout>
+                            <StackLayout Padding="10,20">
+                                    <Label Text="{localization:Translate ls_Deleteaccount}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="#FA6B6B" >
+                                        <Label.GestureRecognizers>
+                                             <TapGestureRecognizer Command="{Binding DeleteAccountCommand}"></TapGestureRecognizer>
+                                         </Label.GestureRecognizers>
+                                    </Label>
+                            </StackLayout>
+                        </StackLayout>
+                     </ScrollView>
+            </RefreshView>
+        </mct:StateContainer.StateViews>
+   </StackLayout>
+</ContentPage>

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:localization="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
+             xmlns:customControls="clr-namespace:ESExpressApp.CustomControls"
+             xmlns:models="clr-namespace:ESExpressApp.Models"
+             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             xmlns:viewmodels="clr-namespace:ESExpressApp.ViewModels"
+             x:DataType="viewmodels:PersonWaybillPageViewModel"
+             x:Class="ESExpressApp.Views.PersonWaybillPage"
+             Title="{localization:Translate ls_Waybillnumber}">
+      <ContentPage.Resources>
+        <ResourceDictionary>
+            <x:Int32 x:Key="ComparingValue">0</x:Int32>
+        </ResourceDictionary>
+        <Style TargetType="Grid" x:Key="gridShippingMethodStyle">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" >
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="#F5F5F5" />
+                                <Setter TargetName="lblCheck"
+                                        Property="Label.IsVisible"
+                                        Value="False" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                   <Setter Property="BackgroundColor"
+                                        Value="#EBF2F8" />
+                                <Setter TargetName="lblCheck"
+                                        Property="Label.IsVisible"
+                                        Value="True" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ScrollView VerticalScrollBarVisibility="Never">
+       <StackLayout Orientation="Vertical" Spacing="30" Padding="10,40,10,0">
+        <customControls:StandardEntryControl Placeholder="{localization:Translate ls_Waybillnumber}" Text="{Binding PersonIncomingPackage.PersonWaybill.WaybillNumber}" />
+        <customControls:StandardEntryControl Placeholder="{localization:Translate ls_ProductName}" Text="{Binding PersonIncomingPackage.PersonWaybill.ProductName}" />
+            <CollectionView
+                         Margin="10,0"
+                         SelectionMode="Single"
+                         ItemsSource="{Binding PersonIncomingPackage.ShippingMethodList}"
+                         SelectedItem="{Binding SelectedShippingMethod}">
+                 <CollectionView.ItemsLayout>
+                       <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5" />
+                 </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:ShippingMethodModel">
+                       <Grid Style="{StaticResource gridShippingMethodStyle}">
+                             <StackLayout WidthRequest="100" Padding="10">
+                               <Image Source="{Binding ThumbnailUrl}" WidthRequest="80" VerticalOptions="Center"  HeightRequest="45"/>
+                                   <Label Grid.Row="1"  x:Name="lblShippingMethodTitle" MaxLines="2"
+                                               Text="{Binding Title}" TextColor="#777777" FontSize="14"  HorizontalTextAlignment="Center" VerticalTextAlignment="Start" />
+                             </StackLayout>
+                            <Label x:Name="lblCheck" HorizontalOptions="End" VerticalOptions="Start" FontSize="16" Text="{x:Static fontAwesome:FontAwesomeIcons.BadgeCheck}" FontFamily="fregular" TextColor="{StaticResource Primary}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+           <Editor Text="{Binding PersonIncomingPackage.PersonWaybill.ClientRemark}" Margin="10,0" Placeholder="{localization:Translate ls_Remark}" BackgroundColor="#EEEEEE" TextColor="#A5A5A5" HeightRequest="100" />    
+        <Button Text="{Binding AddOrEditButtonText}" IsEnabled="{Binding EnableEditButton}" HeightRequest="58" FontSize="20" Margin="10,0" CornerRadius="14" TextColor="White" BackgroundColor="{StaticResource Primary}" Command="{Binding AddOrEditCommand}" />
+    </StackLayout>
+    </ScrollView>
+</ContentPage>

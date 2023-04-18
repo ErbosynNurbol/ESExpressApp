@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             xmlns:localization="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
+             xmlns:customControls="clr-namespace:ESExpressApp.CustomControls"
+             xmlns:viewmodels="clr-namespace:ESExpressApp.ViewModels"
+             xmlns:models="clr-namespace:ESExpressApp.Models"
+             xmlns:handlers="clr-namespace:ESExpressApp.Handlers"
+             BackgroundColor="{StaticResource Primary}"
+             Shell.NavBarIsVisible="False"
+             x:DataType="viewmodels:InfoPageViewModel"
+             x:Class="ESExpressApp.Views.InfoPage"
+             Title="InfoPage">
+    <ContentPage.BindingContext>
+        <viewmodels:InfoPageViewModel />
+    </ContentPage.BindingContext>
+     <StackLayout
+        Orientation="Vertical"
+        mct:StateContainer.CurrentState="{Binding CurrentState}"
+        mct:StateContainer.CanStateChange="{Binding CanStateChange}">
+        <mct:StateContainer.StateViews>
+              <VerticalStackLayout mct:StateView.StateKey="Loading" BackgroundColor="White" VerticalOptions="FillAndExpand">
+                  <customControls:LoadingControl VerticalOptions="FillAndExpand" />
+            </VerticalStackLayout>
+            <VerticalStackLayout mct:StateView.StateKey="Offline" VerticalOptions="FillAndExpand" BackgroundColor="White">
+               <customControls:ErrorControl Title="{localization:Translate ls_Connectionerror}" Description="{localization:Translate ls_Pcyicta}" Icon="{x:Static fontAwesome:FontAwesomeIcons.WifiSlash}" RetryCommand="{Binding RetryCommand}" />
+            </VerticalStackLayout>
+              <VerticalStackLayout mct:StateView.StateKey="Error" VerticalOptions="FillAndExpand" BackgroundColor="White">
+               <customControls:ErrorControl Title="{localization:Translate ls_Error}" Description="{localization:Translate ls_Oopserror}" Icon="{x:Static fontAwesome:FontAwesomeIcons.Bug}" RetryCommand="{Binding RetryCommand}" />
+            </VerticalStackLayout>
+         <StackLayout mct:StateView.StateKey="Success" VerticalOptions="FillAndExpand" Orientation="Vertical" Padding="0,10,0,0">
+           <Label Text="{localization:Translate ls_Help}" Padding="10,10" FontSize="24" TextColor="White" VerticalTextAlignment="Center"  />
+           <CollectionView
+               SelectionMode="Single"
+               BackgroundColor="White"
+               ItemsSource="{Binding ArticleList}"
+               SelectedItem="{Binding ArticleSelected}"
+               SelectionChangedCommand="{Binding ArticleSelectionCommand}"
+               VerticalOptions="FillAndExpand">
+               <CollectionView.Header>
+                    <Grid ColumnDefinitions="*,30" HeightRequest="60" Padding="10,0">
+                             <Label Grid.Column="0" MaxLines="2" FontSize="14" FontAttributes="Bold" LineBreakMode="WordWrap" VerticalTextAlignment="Center" TextColor="#000000" Text="{localization:Translate ls_Faq}" />
+                             <Line Grid.Column=" 0"  Grid.ColumnSpan="2" x:Name="borderBottom" BackgroundColor="#E1E1E1" HeightRequest="1"  VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" />
+                    </Grid>
+               </CollectionView.Header>
+               <CollectionView.ItemTemplate>
+                   <DataTemplate x:DataType="models:ArticleModel">
+                       <Grid ColumnDefinitions="*,30" HeightRequest="60" Padding="10,0">
+                              <Label Grid.Column="0" MaxLines="2" FontSize="14" LineBreakMode="WordWrap" VerticalTextAlignment="Center" TextColor="#066EB7" Text="{Binding Title}" />
+                              <Label Grid.Column="1" FontSize="27" HorizontalOptions="End" VerticalTextAlignment="Center" Text="{x:Static fontAwesome:FontAwesomeIcons.AngleRight}" FontFamily="fregular" TextColor="#777777" />
+                             <Line Grid.Column=" 0"  Grid.ColumnSpan="2" x:Name="borderBottom" BackgroundColor="#E1E1E1" HeightRequest="1"  VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" />
+                       </Grid>
+                   </DataTemplate>
+               </CollectionView.ItemTemplate>
+           </CollectionView>
+        </StackLayout>
+        </mct:StateContainer.StateViews>
+   </StackLayout>
+</ContentPage>

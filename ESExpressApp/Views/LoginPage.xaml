@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:localization="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
+             xmlns:customControls="clr-namespace:ESExpressApp.CustomControls"
+             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             Shell.NavBarIsVisible="False"
+             x:Class="ESExpressApp.Views.LoginPage"
+             Title="LoginPage">
+    <StackLayout Orientation="Vertical" Padding="10,40,10,10" Spacing="30" >
+        <Grid ColumnDefinitions="*,26" HeightRequest="40" HorizontalOptions="FillAndExpand">
+           <Label Grid.Column="0" HorizontalOptions="Start" FontSize="32" Text="{localization:Translate ls_Signin}"  VerticalTextAlignment="Center" />
+           <Grid Grid.Column="1" HeightRequest="26" VerticalOptions="Center">
+                    <Frame CornerRadius="13" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="#000000" Opacity="0.4" />
+                    <Label FontSize="16" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{x:Static fontAwesome:FontAwesomeIcons.Times}" FontFamily="fregular" TextColor="#292D32" >
+                    <Label.GestureRecognizers>
+                         <TapGestureRecognizer Tapped="Close_Tapped"></TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
+           </Grid>
+       </Grid>
+        <customControls:PhoneEntryControl  x:Name="phoneEntryControl" Placeholder="{localization:Translate ls_Phone}" />
+        <customControls:PasswordEntryControl  x:Name="passwordEntryControl"  Placeholder="{localization:Translate ls_Password}" />
+        <Button x:Name="btnLogin" Text="{localization:Translate ls_Signin}" HeightRequest="58" FontSize="20" Margin="10,0" CornerRadius="14" TextColor="White" BackgroundColor="{StaticResource Primary}" Clicked="btnLogin_Clicked" />
+        <Button Text="{localization:Translate ls_Register}" HeightRequest="56"  FontSize="20" Margin="10,0" CornerRadius="14" BackgroundColor="White" TextColor="{StaticResource Primary}" BorderColor="{StaticResource Primary}" BorderWidth="1" Clicked="Register_Clicked" />
+        <Button x:Name="btnResendcode" HeightRequest="58" FontSize="20" Margin="10,0"  Text="{localization:Translate ls_Forgotyourpassword}" BackgroundColor="Transparent" TextColor="{StaticResource linkColor}" BorderWidth="0"  Clicked="btnRecovery_Clicked"  />
+    </StackLayout>
+</ContentPage>

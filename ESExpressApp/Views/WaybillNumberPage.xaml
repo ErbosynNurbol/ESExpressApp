@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             xmlns:localization="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
+             xmlns:customControls="clr-namespace:ESExpressApp.CustomControls"
+             xmlns:viewmodels="clr-namespace:ESExpressApp.ViewModels"
+             xmlns:models="clr-namespace:ESExpressApp.Models"
+             BackgroundColor="White"
+             Shell.TabBarIsVisible="False"
+             x:DataType="viewmodels:WaybillNumberPageViewModel"
+             x:Class="ESExpressApp.Views.WaybillNumberPage"
+             Title="{localization:Translate ls_Waybillnumber}">
+     <StackLayout
+        Orientation="Vertical"
+        mct:StateContainer.CurrentState="{Binding CurrentState}"
+        mct:StateContainer.CanStateChange="{Binding CanStateChange}">
+        <mct:StateContainer.StateViews>
+             <VerticalStackLayout mct:StateView.StateKey="Loading" BackgroundColor="White" VerticalOptions="FillAndExpand">
+                  <customControls:LoadingControl VerticalOptions="FillAndExpand" />
+            </VerticalStackLayout>
+            <VerticalStackLayout mct:StateView.StateKey="Offline" VerticalOptions="FillAndExpand" BackgroundColor="White">
+               <customControls:ErrorControl Title="{localization:Translate ls_Connectionerror}" Description="{localization:Translate ls_Pcyicta}" Icon="{x:Static fontAwesome:FontAwesomeIcons.WifiSlash}" RetryCommand="{Binding RetryCommand}" />
+            </VerticalStackLayout>
+              <VerticalStackLayout mct:StateView.StateKey="Error" VerticalOptions="FillAndExpand" BackgroundColor="White">
+               <customControls:ErrorControl Title="{localization:Translate ls_Error}" Description="{localization:Translate ls_Oopserror}" Icon="{x:Static fontAwesome:FontAwesomeIcons.Bug}" RetryCommand="{Binding RetryCommand}" />
+            </VerticalStackLayout>
+             <VerticalStackLayout mct:StateView.StateKey="Empty" VerticalOptions="FillAndExpand" BackgroundColor="White">
+                <customControls:EmptyControl />
+            </VerticalStackLayout>
+              <RefreshView mct:StateView.StateKey="Success" IsRefreshing="{Binding IsRefreshing}"  Command="{Binding RefreshCommand}"  VerticalOptions="FillAndExpand" >
+                     <ScrollView  VerticalScrollBarVisibility="Never">
+                        <StackLayout VerticalOptions="FillAndExpand" Orientation="Vertical" Padding="10,10,10,0">
+
+                              <customControls:SearchWaybillNumberControl Text="{Binding WaybillNumber}" Margin="0,20" Placeholder="{localization:Translate ls_Waybillnumber}" SearchCommand="{Binding SearchCommand}" />
+    
+                               <CollectionView ItemsSource="{Binding WaybillInfoList}" VerticalOptions="FillAndExpand">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:WaybillInfoModel">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout Grid.Column="0" Spacing="0">
+                                        <Label Text="{Binding Icon}"
+                                        FontFamily="{Binding Font}"
+                                        FontAttributes="Bold"
+                                        TextColor="{Binding TextColor}"
+                                        FontSize="16"
+                                        HorizontalTextAlignment="Center"
+                                        VerticalTextAlignment="Start" />
+                                        <BoxView IsVisible="{Binding ShowLine}" WidthRequest="2" BackgroundColor="#C6C6C6" HorizontalOptions="Center"  VerticalOptions="FillAndExpand"/>
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="1">
+                                        <Label Text="{Binding Address}" FontSize="16" HorizontalTextAlignment="Start" TextColor="{Binding TextColor}"  />
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding Date}" FontSize="12" HorizontalTextAlignment="Start" TextColor="{Binding TextColor}"  />
+                                            <Label Text="{Binding Time}" FontSize="12" HorizontalTextAlignment="Start" TextColor="{Binding TextColor}"  />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                     </CollectionView>
+                      </StackLayout>
+                     </ScrollView>
+            </RefreshView>
+        </mct:StateContainer.StateViews>
+   </StackLayout>
+</ContentPage>

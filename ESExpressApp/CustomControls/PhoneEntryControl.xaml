@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:handlers="clr-namespace:ESExpressApp.Handlers"
+             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             HeightRequest="58"
+             Padding="10,0"
+             x:Name="this" 
+             x:Class="ESExpressApp.CustomControls.PhoneEntryControl">
+             <Frame BackgroundColor="#EEEEEE" CornerRadius="6" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+             <Grid ColumnDefinitions="*,35" Padding="10,0,5,0">
+                      <handlers:BorderlessEntry Grid.Column="0" x:Name="customEntry" HeightRequest="38" MaxLength="12" Keyboard="Telephone" TextChanged="CustomEntry_TextChanged" Focused="CustomEntry_Focused" Text="{Binding Source={x:Reference this},Path=Text}" Placeholder="{Binding Source={x:Reference this},Path=Placeholder}" VerticalTextAlignment="Center" VerticalOptions="Center"  />
+                      <Label Grid.Column="1" x:Name="lblClear" IsVisible="False" FontSize="16" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{x:Static fontAwesome:FontAwesomeIcons.Times}" FontFamily="fregular" TextColor="#A5A5A5" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Clear_Tapped"></TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                      </Label>
+            </Grid>
+</Grid>

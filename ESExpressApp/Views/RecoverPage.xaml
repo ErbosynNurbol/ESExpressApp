@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:localization="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
+             xmlns:customControls="clr-namespace:ESExpressApp.CustomControls"
+             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             x:Class="ESExpressApp.Views.RecoverPage"
+             Title="{localization:Translate ls_Passwordrecovery}">
+      <StackLayout Orientation="Vertical" Padding="10,40,10,10" Spacing="30" >
+           <StackLayout x:Name="slFirstStep" IsVisible="True"  Orientation="Vertical" Spacing="10">
+                    <customControls:PhoneEntryControl x:Name="phoneEntryControl" Placeholder="Phone" HorizontalOptions="FillAndExpand"  />
+                     <Button x:Name="btnGetVerificationCode" Text="{localization:Translate ls_Getverificationcode}" HeightRequest="58" FontSize="20" Margin="10,0" CornerRadius="14" TextColor="White" BackgroundColor="{StaticResource Primary}" Clicked="btnGetVerificationCode_Clicked" />
+                </StackLayout>
+                <StackLayout x:Name="slSecondStep" IsVisible="False" Orientation="Vertical" VerticalOptions="FillAndExpand" Spacing="10">
+                    <Label x:Name="lblPhone" Text="{localization:Translate ls_Etcfsstphone}" HorizontalTextAlignment="Center"  TextColor="#000000" VerticalTextAlignment="Center" MaxLines="3"/>
+                    <customControls:VerifyCodeEntryControl x:Name="verifyCodeTemplate"  HorizontalOptions="Center"  />
+                    <Label x:Name="lblResendTime" Text="{localization:Translate ls_Ycgancits}" HorizontalTextAlignment="Center" TextColor="#000000" VerticalTextAlignment="Center" MaxLines="3"/>
+                    <Button x:Name="btnResendcode" Clicked="btnGetVerificationCode_Clicked" IsVisible="False" Text="{localization:Translate ls_Resendcode}" BackgroundColor="Transparent" TextColor="{StaticResource linkColor}" BorderWidth="0" />
+                    <Button IsEnabled="False" x:Name="btnCheckVeriftyCode" Clicked="btnCheckVeriftyCode_Clicked" Text="{localization:Translate ls_Continue}" HeightRequest="58" FontSize="20" Margin="10,0" CornerRadius="14" TextColor="White" BackgroundColor="{StaticResource Primary}" VerticalOptions="EndAndExpand" />
+                </StackLayout>
+                <StackLayout x:Name="slThirdStep" IsVisible="False" Orientation="Vertical" Spacing="30">
+                    <customControls:PasswordEntryControl 
+                        x:Name="passwordEntryControl"
+                        Placeholder="{localization:Translate ls_Password}"
+                        HorizontalOptions="FillAndExpand"
+                        />
+                    <customControls:PasswordEntryControl 
+                        x:Name="confirmPasswordEntryControl"
+                        Placeholder="{localization:Translate ls_ConfirmPassword}"
+                        HorizontalOptions="FillAndExpand"
+                        />
+                    <Button Text="{localization:Translate ls_Submit}" Clicked="btnRecover_Clicked" HeightRequest="58" FontSize="20" Margin="10,0" CornerRadius="14" TextColor="White" BackgroundColor="{StaticResource Primary}" />
+                </StackLayout>
+        </StackLayout>
+</ContentPage>

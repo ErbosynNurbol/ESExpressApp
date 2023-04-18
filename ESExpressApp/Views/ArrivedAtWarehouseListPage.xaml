@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             xmlns:localization="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
+             xmlns:customControls="clr-namespace:ESExpressApp.CustomControls"
+             xmlns:models="clr-namespace:ESExpressApp.Models"
+             xmlns:viewmodels="clr-namespace:ESExpressApp.ViewModels"
+             x:DataType="viewmodels:NotshippedListPageViewModel"
+             Shell.TabBarIsVisible="False"
+             x:Class="ESExpressApp.Views.ArrivedAtWarehouseListPage"
+             Title="{localization:Translate ls_Arrivedatwarehouse}">
+     <StackLayout
+        Orientation="Vertical"
+        mct:StateContainer.CurrentState="{Binding CurrentState}"
+        mct:StateContainer.CanStateChange="{Binding CanStateChange}">
+        <mct:StateContainer.StateViews>
+        <VerticalStackLayout mct:StateView.StateKey="Loading" BackgroundColor="White" VerticalOptions="FillAndExpand">
+                  <customControls:LoadingControl VerticalOptions="FillAndExpand" />
+            </VerticalStackLayout>
+            <VerticalStackLayout mct:StateView.StateKey="Offline" VerticalOptions="FillAndExpand" BackgroundColor="White">
+               <customControls:ErrorControl Title="{localization:Translate ls_Connectionerror}" Description="{localization:Translate ls_Pcyicta}" Icon="{x:Static fontAwesome:FontAwesomeIcons.WifiSlash}" RetryCommand="{Binding RetryCommand}" />
+            </VerticalStackLayout>
+              <VerticalStackLayout mct:StateView.StateKey="Error" VerticalOptions="FillAndExpand" BackgroundColor="White">
+               <customControls:ErrorControl Title="{localization:Translate ls_Error}" Description="{localization:Translate ls_Oopserror}" Icon="{x:Static fontAwesome:FontAwesomeIcons.Bug}" RetryCommand="{Binding RetryCommand}" />
+            </VerticalStackLayout>
+         <RefreshView mct:StateView.StateKey="Success" IsRefreshing="{Binding IsRefreshing}"
+             Command="{Binding RefreshCommand}"  VerticalOptions="FillAndExpand" >
+ <CollectionView x:Name="personWaybillList" ItemsSource="{Binding PersonWaybillList}" RemainingItemsThreshold="1" RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}">
+    <CollectionView.ItemTemplate>
+        <DataTemplate x:DataType="models:PackageInfoModel">
+      <SwipeView>
+    <SwipeView.RightItems>
+        <SwipeItems>
+            <SwipeItemView Command="{Binding Source={x:Reference personWaybillList}, Path=BindingContext.SearchCommand}" CommandParameter="{Binding .}">
+                <Grid WidthRequest="80" RowDefinitions="25,*" VerticalOptions="FillAndExpand"  BackgroundColor="#21a9e1">
+                        <Label Grid.Row="0" VerticalTextAlignment="End" VerticalOptions="EndAndExpand" HorizontalOptions="Center" FontSize="16" Text="{x:Static fontAwesome:FontAwesomeIcons.Search}" FontFamily="fregular" TextColor="White" />
+                        <Label Grid.Row="1" Text="{localization:Translate ls_Search}" FontSize="12" MaxLines="2" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="White" />
+                </Grid>
+            </SwipeItemView>
+        </SwipeItems>
+    </SwipeView.RightItems>
+   <Grid RowDefinitions="20,40" HeightRequest="60" ColumnDefinitions="100,*" RowSpacing="10" ColumnSpacing="10" Margin="5">
+                    <Image Grid.RowSpan="2"
+                           Source="{Binding ShippingImage}"
+                           Aspect="AspectFill" />
+                    <Label Grid.Column="1"
+                           Text="{Binding WaybillNumber}"
+                           VerticalOptions="End"
+                           FontAttributes="Bold" />
+                    <Label Grid.Row="1"
+                           Grid.Column="1"
+                           Text="{Binding ProductName}"
+                           MaxLines="2"
+                           VerticalOptions="Start" />
+ </Grid>
+</SwipeView>
+            
+        </DataTemplate>
+    </CollectionView.ItemTemplate>
+       <CollectionView.EmptyView>
+         <customControls:EmptyControl />
+     </CollectionView.EmptyView>
+  <CollectionView.Footer>
+          <StackLayout>
+               <ActivityIndicator IsRunning="True" IsVisible="{Binding IsLoading}" HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" />
+          </StackLayout>        
+   </CollectionView.Footer>
+</CollectionView>
+        </RefreshView>
+        </mct:StateContainer.StateViews>
+   </StackLayout>
+</ContentPage>

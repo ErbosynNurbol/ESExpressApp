@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:handlers="clr-namespace:ESExpressApp.Handlers"
+             RowDefinitions="58,1"
+             ColumnDefinitions="40,40,40,40,40"
+             x:Name="this" 
+             x:Class="ESExpressApp.CustomControls.VerifyCodeEntryControl">
+     <Grid.Resources>
+        <Style x:Key="verifyCodeStyle" TargetType="{x:Type handlers:BorderlessEntry}">
+            <Setter Property="Keyboard" Value="Numeric" />
+            <Setter Property="SelectionLength" Value="0" />
+            <Setter Property="TextColor" Value="{StaticResource Primary}" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+            <Setter Property="PlaceholderColor" Value="#ced4da" />
+            <Setter Property="Placeholder" Value="—" />
+        </Style>
+        <Style x:Key="verifyBoxStyle" TargetType="BoxView">
+            <Setter Property="BackgroundColor" Value="#737373" />
+            <Setter Property="HeightRequest" Value="1" />
+            <Setter Property="VerticalOptions" Value="End" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        </Style>
+    </Grid.Resources>
+         <handlers:BorderlessEntry Grid.Row="0" Grid.Column="0" 
+                        Style="{StaticResource verifyCodeStyle}"
+                        x:Name="entryVerifyCode_1"
+                        Focused="entryVerifyCode_Focused"
+                        TextChanged="entryVerifyCode_1_TextChanged"
+                        />
+            <handlers:BorderlessEntry Grid.Row="0" Grid.Column="1"
+                        Style="{StaticResource verifyCodeStyle}"
+                        x:Name="entryVerifyCode_2"
+                        Focused="entryVerifyCode_Focused"
+                        TextChanged="entryVerifyCode_2_TextChanged"
+                        />
+            <handlers:BorderlessEntry Grid.Row="0" Grid.Column="2"
+                        Style="{StaticResource verifyCodeStyle}"
+                        x:Name="entryVerifyCode_3"
+                        Focused="entryVerifyCode_Focused"
+                        TextChanged="entryVerifyCode_3_TextChanged"
+                        
+                        />
+            <handlers:BorderlessEntry Grid.Row="0" Grid.Column="3"
+                        Style="{StaticResource verifyCodeStyle}"
+                        x:Name="entryVerifyCode_4"
+                        Focused="entryVerifyCode_Focused"
+                        TextChanged="entryVerifyCode_4_TextChanged"
+                        />
+            <handlers:BorderlessEntry Grid.Row="0" Grid.Column="4"
+                        Style="{StaticResource verifyCodeStyle}"
+                        x:Name="entryVerifyCode_5"
+                        Focused="entryVerifyCode_Focused"
+                        TextChanged="entryVerifyCode_5_TextChanged"
+                        />
+            <BoxView x:Name="bvVerifyCode_1"  Grid.Row="1" Grid.Column="0" Style="{StaticResource verifyBoxStyle}"/>
+            <BoxView x:Name="bvVerifyCode_2"  Grid.Row="1" Grid.Column="1" Style="{StaticResource verifyBoxStyle}"/>
+            <BoxView x:Name="bvVerifyCode_3"  Grid.Row="1" Grid.Column="2" Style="{StaticResource verifyBoxStyle}"/>
+            <BoxView x:Name="bvVerifyCode_4"  Grid.Row="1" Grid.Column="3" Style="{StaticResource verifyBoxStyle}"/>
+            <BoxView x:Name="bvVerifyCode_5"  Grid.Row="1" Grid.Column="4" Style="{StaticResource verifyBoxStyle}"/>
+</Grid>

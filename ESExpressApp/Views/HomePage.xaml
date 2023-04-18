@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ESExpressApp.Views.HomePage"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             xmlns:localization="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
+             xmlns:viewmodels="clr-namespace:ESExpressApp.ViewModels"
+             xmlns:customControls="clr-namespace:ESExpressApp.CustomControls"
+             xmlns:models="clr-namespace:ESExpressApp.Models"
+             xmlns:handlers="clr-namespace:ESExpressApp.Handlers"
+             xmlns:home = "clr-namespace:ESExpressApp.Views.Home"
+             x:DataType="viewmodels:HomePageViewModel"
+             Shell.NavBarIsVisible="False"
+             Title="HomePage">
+    <StackLayout
+        Orientation="Vertical"
+        mct:StateContainer.CurrentState="{Binding CurrentState}"
+        mct:StateContainer.CanStateChange="{Binding CanStateChange}">
+        <mct:StateContainer.StateViews>
+             <VerticalStackLayout mct:StateView.StateKey="Loading" BackgroundColor="White" VerticalOptions="FillAndExpand">
+                  <customControls:LoadingControl VerticalOptions="FillAndExpand" />
+            </VerticalStackLayout>
+            <VerticalStackLayout mct:StateView.StateKey="Offline" VerticalOptions="FillAndExpand" BackgroundColor="White">
+               <customControls:ErrorControl Title="{localization:Translate ls_Connectionerror}" Description="{localization:Translate ls_Pcyicta}" Icon="{x:Static fontAwesome:FontAwesomeIcons.WifiSlash}" RetryCommand="{Binding RetryCommand}" />
+            </VerticalStackLayout>
+              <VerticalStackLayout mct:StateView.StateKey="Error" VerticalOptions="FillAndExpand" BackgroundColor="White">
+               <customControls:ErrorControl Title="{localization:Translate ls_Error}" Description="{localization:Translate ls_Oopserror}" Icon="{x:Static fontAwesome:FontAwesomeIcons.Bug}" RetryCommand="{Binding RetryCommand}" />
+            </VerticalStackLayout>
+         <Grid RowDefinitions="50,*" mct:StateView.StateKey="Success" VerticalOptions="FillAndExpand">
+            <StackLayout Grid.Row="0" Padding="10,0" Orientation="Horizontal">
+                <Image Source="logo.png" HorizontalOptions="StartAndExpand" />
+                <Label FontSize="27" HorizontalOptions="End" VerticalOptions="Center" Text="{x:Static fontAwesome:FontAwesomeIcons.Globe}" FontFamily="fregular" TextColor="{StaticResource Primary}" >
+                     <Label.GestureRecognizers>
+                         <TapGestureRecognizer Command="{Binding ShowLanguagesCommand}"></TapGestureRecognizer>
+                      </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+             <Border Grid.Row="0" BackgroundColor="#E4E4E4" HeightRequest="2" VerticalOptions="EndAndExpand" />
+              <ScrollView Grid.Row="1" Padding="0,0,0,30" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never">
+                <StackLayout Orientation="Vertical">
+                    <customControls:SearchWaybillNumberControl Text="{Binding WaybillNumber}" Margin="0,20" Placeholder="{localization:Translate ls_Waybillnumber}" SearchCommand="{Binding SearchWaybillNumberCommand}" />
+       <CarouselView x:Name="carousel" HeightRequest="215"  ItemsSource="{Binding FocusNewsList}">
+        <CarouselView.ItemTemplate>
+            <DataTemplate x:DataType="models:ArticleModel">
+                <Grid>
+                    <Frame BackgroundColor="Transparent" CornerRadius="12" Margin="10,0" Padding="0" IsClippedToBounds="True" VerticalOptions="FillAndExpand">
+                        <Image  Source="{Binding ThumbnailUrl}" HorizontalOptions="FillAndExpand" Aspect="Fill" />
+                    </Frame>
+                </Grid>
+            </DataTemplate>
+        </CarouselView.ItemTemplate>
+    </CarouselView>
+      <Label Text="{localization:Translate ls_Services}" Margin="10,20,10,5" />
+      <FlexLayout BindableLayout.ItemsSource="{Binding TariffList}" 
+           Wrap="Wrap"
+           Direction="Row"
+           JustifyContent="Start"
+           AlignItems="Start"
+           AlignContent="Start">
+        <BindableLayout.ItemTemplate>
+            <DataTemplate x:DataType="models:TariffModel">
+                <Grid Margin="4,2,2,4"
+                      FlexLayout.Basis="{OnIdiom Phone='50%', Tablet='25%'}"
+                      FlexLayout.AlignSelf="Start">
+                     <Grid.GestureRecognizers>
+                         <TapGestureRecognizer Tapped="Tariff_Tapped" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                      </Grid.GestureRecognizers>
+                    <home:TariffTemplate/>
+                </Grid>
+            </DataTemplate>
+        </BindableLayout.ItemTemplate>
+    </FlexLayout>
+     <Label Text="{localization:Translate ls_Howwework}" Margin="10,20,10,5" />
+   <Grid VerticalOptions="Start" ColumnDefinitions="160,*">
+       <Frame 
+            CornerRadius="0"
+            Opacity="0.15"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            HorizontalOptions="FillAndExpand">
+    <Frame.Background>
+          <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#4BBC28"
+                          Offset="0.1" />
+            <GradientStop Color="#066EB7"
+                          Offset="1.0" />
+        </LinearGradientBrush>
+    </Frame.Background>
+     </Frame>
+       <CollectionView Grid.Column="0"
+                       x:Name="cvHWorkList"
+                       HeightRequest="{Binding HWorkHeight}"
+                       SelectionMode="Single"
+                       ItemsSource="{Binding HWorkList}"
+                       SelectedItem="{Binding HWorkSelected}">
+           <CollectionView.ItemTemplate>
+               <DataTemplate>
+                   <home:HWorkTemplate />
+               </DataTemplate>
+           </CollectionView.ItemTemplate>
+       </CollectionView>
+        <StackLayout Grid.Column="1" Orientation="Vertical">
+             <Image Source="{Binding HWorkSelected.ThumbnailUrl}" HorizontalOptions="FillAndExpand" Margin="10" />
+             <Label  Padding="15" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding HWorkSelected.ShortDescription}" />
+        </StackLayout>
+      </Grid>
+      <Label Text="{localization:Translate ls_Whatclientssay}" Margin="10,20,10,5" />
+      <CarouselView x:Name="carouselComment" HeightRequest="200" PeekAreaInsets="50" ItemsSource="{Binding ClientsSayList}">
+             <CarouselView.ItemsLayout>
+        <LinearItemsLayout Orientation="Horizontal"
+                           SnapPointsType="MandatorySingle"
+                           ItemSpacing="15"
+                           SnapPointsAlignment="End" />
+    </CarouselView.ItemsLayout>
+          <CarouselView.ItemTemplate>
+            <DataTemplate>
+               <home:ClientsSayTemplate />
+            </DataTemplate>
+        </CarouselView.ItemTemplate>
+    </CarouselView>
+      </StackLayout>
+            </ScrollView>
+        </Grid>
+        </mct:StateContainer.StateViews>
+   </StackLayout>
+</ContentPage>

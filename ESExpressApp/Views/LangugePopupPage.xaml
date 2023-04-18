@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup  xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+            xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:localization="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
+            xmlns:viewmodels="clr-namespace:ESExpressApp.ViewModels"
+            xmlns:fontAwesome="clr-namespace:FontAwesome"
+            xmlns:models="clr-namespace:ESExpressApp.Models"
+            x:DataType="viewmodels:LangugePopupPageViewModel"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="ESExpressApp.Views.LangugePopupPage">
+   <VerticalStackLayout BackgroundColor="White" Padding="10" VerticalOptions="Center" HorizontalOptions="Center" >
+      <Grid ColumnDefinitions="*,26" HeightRequest="26" HorizontalOptions="FillAndExpand">
+           <Label Grid.Column="0" HorizontalOptions="Start" Text="{localization:Translate ls_Selectlanguage}" HeightRequest="40" VerticalTextAlignment="Center" />
+           <Frame Grid.Column="1" CornerRadius="13" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="#000000" Opacity="0.4" />
+           <Label Grid.Column="1" FontSize="16" WidthRequest="26" HeightRequest="26" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{x:Static fontAwesome:FontAwesomeIcons.Times}" FontFamily="fregular" TextColor="#292D32" >
+                   <Label.GestureRecognizers>
+                         <TapGestureRecognizer Tapped="Close_Tapped"></TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+           </Label>
+       </Grid>
+          <CollectionView SelectionMode="Single" HeightRequest="200" WidthRequest="200" Margin="0,10" ItemsSource="{Binding SupertedLanuages}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" SelectedItem="{Binding SelectedLanguage}">
+              <CollectionView.Resources>
+                     <Style TargetType="Grid" x:Key="gridLanguageStyle">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" >
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="Transparent" />
+                               <Setter  TargetName="languageFullName"
+                                        Property="Label.TextColor"
+                                        Value="#000000" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="#EBF2F8" />
+                                <Setter  TargetName="languageFullName"
+                                        Property="Label.TextColor"
+                                        Value="#000000" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+              </CollectionView.Resources>
+              <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:LanguageModel">
+                        <Grid HeightRequest="40" Padding="10,0" Style="{StaticResource gridLanguageStyle}">
+                            <Label x:Name="languageFullName" Text="{Binding FullName}" VerticalTextAlignment="Center" FontSize="16" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+        </CollectionView>
+       <Button Text="{localization:Translate ls_Save}" Margin="0,10" Command="{Binding ChangeLanguageCommand}" />
+   </VerticalStackLayout>
+</mct:Popup>

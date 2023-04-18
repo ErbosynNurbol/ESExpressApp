@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:localization="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
+             x:Name="this" 
+             x:Class="ESExpressApp.CustomControls.ErrorControl">
+     <Grid.Resources>
+        <ResourceDictionary>
+            <mct:IsNullConverter x:Key="IsNullConverter" />
+        </ResourceDictionary>
+    </Grid.Resources>
+     <StackLayout HorizontalOptions="Center"
+                 BackgroundColor="Transparent"
+                  Padding="10,30"
+                 Spacing="30"
+                 VerticalOptions="Start">
+
+        <Label  FontSize="50" 
+                Text="{Binding Source={x:Reference this},Path=Icon}" 
+                FontFamily="fregular"
+                TextColor="#777777"
+                HorizontalTextAlignment="Center"
+                />
+
+        <Label Text="{Binding Source={x:Reference this},Path=Title}" FontSize="16" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="#777777"/>
+
+        <Label Text="{Binding Source={x:Reference this},Path=Description}" FontSize="14" HorizontalTextAlignment="Center" TextColor="#777777"/>
+
+        <Button Text="{localization:Translate ls_Retry}" HeightRequest="38" WidthRequest="100" BorderColor="#777777" BorderWidth="1" BackgroundColor="Transparent"
+                TextColor="{StaticResource Primary}" Command="{Binding Source={x:Reference this},Path=RetryCommand}" />
+
+    </StackLayout>
+</Grid>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Border xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:ESExpressApp.Models"
+             HeightRequest="67"
+        Margin="0"
+        Padding="0"
+             Style="{StaticResource borderHWorkListItemStyle}"
+             x:DataType="models:HWorkModel"
+             x:Class="ESExpressApp.Views.Home.HWorkTemplate">
+    <Grid    ColumnDefinitions="40,*"
+             Margin="0"
+             Padding="0">
+              <Label Grid.Column="0"
+                                x:Name="labelIcon"
+                                HorizontalOptions="Center" 
+                                VerticalOptions="Center"
+                                Margin="8,0,8,0"
+                                Text="{Binding IconUnicode}" 
+                                FontFamily="{Binding IconFontFamily}" 
+                                FontAttributes="Bold" 
+                                FontSize="24" />
+              <Label Grid.Column="1" x:Name="labelTitle" Text="{Binding Title}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="14" MaxLines="2" />
+    </Grid>
+</Border>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+        <Style TargetType="Border" x:Key="borderHWorkListItemStyle">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                           <VisualState x:Name="Normal" >
+                            <VisualState.Setters>
+                                 <Setter Property="BackgroundColor"
+                                        Value="#F5F5F5" />
+                                   <Setter Property="Border.Stroke"
+                                        Value="#F5F5F5" />
+                                <Setter TargetName="labelIcon"
+                                        Property="Label.TextColor"
+                                        Value="#777777" />
+                                <Setter TargetName="labelTitle"
+                                        Property="Label.TextColor"
+                                        Value="#777777" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                  <Setter Property="BackgroundColor"
+                                        Value="{OnPlatform Transparent, iOS=White}" />
+                                    <Setter Property="Border.Stroke"
+                                        Value="#D6D6D6" />
+                                 <Setter TargetName="labelIcon"
+                                        Property="Label.TextColor"
+                                        Value="{StaticResource Primary}" />
+                                <Setter TargetName="labelTitle"
+                                        Property="Label.TextColor"
+                                        Value="#000000" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+</ResourceDictionary>
+

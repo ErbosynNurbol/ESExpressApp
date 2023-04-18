@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:models="clr-namespace:ESExpressApp.Models"
+             xmlns:viewmodels="clr-namespace:ESExpressApp.ViewModels"
+             xmlns:customControls="clr-namespace:ESExpressApp.CustomControls"
+             xmlns:localization="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
+             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             BackgroundColor="{StaticResource Primary}"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False"
+             x:DataType="viewmodels:ArticleViewPageViewModel"
+             x:Class="ESExpressApp.Views.ArticleViewPage"
+             Title="ArticleViewPage">
+        <StackLayout
+        Orientation="Vertical"
+        BackgroundColor="White"
+        mct:StateContainer.CurrentState="{Binding CurrentState}"
+        mct:StateContainer.CanStateChange="{Binding CanStateChange}">
+      <mct:StateContainer.StateViews>
+                <VerticalStackLayout mct:StateView.StateKey="Loading" BackgroundColor="White" VerticalOptions="FillAndExpand">
+                  <customControls:LoadingControl VerticalOptions="FillAndExpand" />
+            </VerticalStackLayout>
+            <VerticalStackLayout mct:StateView.StateKey="Offline" VerticalOptions="FillAndExpand" BackgroundColor="White">
+               <customControls:ErrorControl Title="{localization:Translate ls_Connectionerror}" Description="{localization:Translate ls_Pcyicta}" Icon="{x:Static fontAwesome:FontAwesomeIcons.WifiSlash}" RetryCommand="{Binding RetryCommand}" />
+            </VerticalStackLayout>
+              <VerticalStackLayout mct:StateView.StateKey="Error" VerticalOptions="FillAndExpand" BackgroundColor="White">
+               <customControls:ErrorControl Title="{localization:Translate ls_Error}" Description="{localization:Translate ls_Oopserror}" Icon="{x:Static fontAwesome:FontAwesomeIcons.Bug}" RetryCommand="{Binding RetryCommand}" />
+            </VerticalStackLayout>
+         <Grid RowDefinitions="58,*" RowSpacing="0" mct:StateView.StateKey="Success" VerticalOptions="FillAndExpand">
+             <customControls:CanBackHeaderControl Grid.Row="0" PageTitle="{Binding ArticleTitle}" />
+             <WebView Grid.Row="1" Source="{Binding FullDescription,Mode=OneWay}" HorizontalOptions="Fill" VerticalOptions="FillAndExpand" />
+         </Grid>
+        </mct:StateContainer.StateViews>
+    </StackLayout>
+        
+</ContentPage>

@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ls_Home" xml:space="preserve">
+    <value>首页</value>
+  </data>
+  <data name="ls_Calculator" xml:space="preserve">
+    <value>计算器</value>
+  </data>
+  <data name="ls_Help" xml:space="preserve">
+    <value>帮助</value>
+  </data>
+  <data name="ls_Profile" xml:space="preserve">
+    <value>个人中心</value>
+  </data>
+  <data name="ls_Services" xml:space="preserve">
+    <value>服务</value>
+  </data>
+  <data name="ls_Howwework" xml:space="preserve">
+    <value>我们如何工作</value>
+  </data>
+  <data name="ls_Whatclientssay" xml:space="preserve">
+    <value>客户怎么说</value>
+  </data>
+  <data name="ls_Waybillnumber" xml:space="preserve">
+    <value>运单号</value>
+  </data>
+  <data name="ls_Selectlanguage" xml:space="preserve">
+    <value>选择语言</value>
+  </data>
+  <data name="ls_Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="ls_Airtransportation" xml:space="preserve">
+    <value>空运</value>
+  </data>
+  <data name="ls_Trucktransportation" xml:space="preserve">
+    <value>卡车运输</value>
+  </data>
+  <data name="ls_Traintransportation" xml:space="preserve">
+    <value>火车运输</value>
+  </data>
+  <data name="ls_Width" xml:space="preserve">
+    <value>宽度</value>
+  </data>
+  <data name="ls_Length" xml:space="preserve">
+    <value>长度</value>
+  </data>
+  <data name="ls_Height" xml:space="preserve">
+    <value>高度</value>
+  </data>
+  <data name="ls_Weight" xml:space="preserve">
+    <value>重量</value>
+  </data>
+  <data name="ls_Calculate" xml:space="preserve">
+    <value>计算</value>
+  </data>
+  <data name="ls_Shippingcosts" xml:space="preserve">
+    <value>运费</value>
+  </data>
+  <data name="ls_Faq" xml:space="preserve">
+    <value>常见问题</value>
+  </data>
+  <data name="ls_Signin" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="ls_Notshipped" xml:space="preserve">
+    <value>未发货</value>
+  </data>
+  <data name="ls_Intransit" xml:space="preserve">
+    <value>在途中</value>
+  </data>
+  <data name="ls_Arrivedatwarehouse" xml:space="preserve">
+    <value>已到仓库</value>
+  </data>
+  <data name="ls_Transactioncompleted" xml:space="preserve">
+    <value>已完成</value>
+  </data>
+  <data name="ls_Personalinfo" xml:space="preserve">
+    <value>个人信息</value>
+  </data>
+  <data name="ls_Changepassword" xml:space="preserve">
+    <value>修改密码</value>
+  </data>
+  <data name="ls_Shippingaddress" xml:space="preserve">
+    <value>收货地址</value>
+  </data>
+  <data name="ls_Myorder" xml:space="preserve">
+    <value>我的订单</value>
+  </data>
+  <data name="ls_Settings" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="ls_Phone" xml:space="preserve">
+    <value>手机</value>
+  </data>
+  <data name="ls_Signin" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="ls_Register" xml:space="preserve">
+    <value>注册</value>
+  </data>
+  <data name="ls_Forgotyourpassword" xml:space="preserve">
+    <value>忘记密码了吗？</value>
+  </data>
+  <data name="ls_Getverificationcode" xml:space="preserve">
+    <value>获取验证码</value>
+  </data>
+  <data name="ls_Etcfsstphone" xml:space="preserve">
+    <value>输入发送到{phone}的短信验证码</value>
+  </data>
+  <data name="ls_Ycgancits" xml:space="preserve">
+    <value>{time}秒后可以重新获取验证码</value>
+  </data>
+  <data name="ls_Resendcode" xml:space="preserve">
+    <value>重新发送验证码</value>
+  </data>
+  <data name="ls_Continue" xml:space="preserve">
+    <value>继续</value>
+  </data>
+  <data name="ls_Yourname" xml:space="preserve">
+    <value>姓名</value>
+  </data>
+  <data name="ls_Password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="ls_ConfirmPassword" xml:space="preserve">
+    <value>确认密码</value>
+  </data>
+  <data name="ls_Warning" xml:space="preserve">
+    <value>警告</value>
+  </data>
+  <data name="ls_Close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="ls_Registrationsuccessful" xml:space="preserve">
+    <value>注册成功</value>
+  </data>
+  <data name="ls_Passwordrecovery" xml:space="preserve">
+    <value>密码恢复</value>
+  </data>
+  <data name="ls_Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="ls_Passwordresetcomplete" xml:space="preserve">
+    <value>密码修改成功</value>
+  </data>
+  <data name="ls_Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="ls_Edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="ls_Areyousure" xml:space="preserve">
+    <value>您确定吗？</value>
+  </data>
+  <data name="ls_ProductName" xml:space="preserve">
+    <value>商品名称</value>
+  </data>
+  <data name="ls_Shippingmethods" xml:space="preserve">
+    <value>运送方式</value>
+  </data>
+  <data name="ls_Remark" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="ls_Isdeletedoridiswrong" xml:space="preserve">
+    <value>已删除或Id有误</value>
+  </data>
+  <data name="ls_Add" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="ls_Search" xml:space="preserve">
+    <value>搜索</value>
+  </data>
+  <data name="ls_Loading" xml:space="preserve">
+    <value>加载中</value>
+  </data>
+  <data name="ls_Retry" xml:space="preserve">
+    <value>重试</value>
+  </data>
+  <data name="ls_Nodataavailable" xml:space="preserve">
+    <value>没有任何数据</value>
+  </data>
+  <data name="ls_Connectionerror" xml:space="preserve">
+    <value>连接错误</value>
+  </data>
+  <data name="ls_Pcyicta" xml:space="preserve">
+    <value>请检查您的互联网连接或重试</value>
+  </data>
+  <data name="ls_Error" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="ls_Oopserror" xml:space="preserve">
+    <value>哎呀！出事了。 请稍后再试。</value>
+  </data>
+  <data name="ls_Changephonenumber" xml:space="preserve">
+    <value>更改手机号</value>
+  </data>
+  <data name="ls_District" xml:space="preserve">
+    <value>区（市）</value>
+  </data>
+  <data name="ls_Secondaryphone" xml:space="preserve">
+    <value>辅助电话号码</value>
+  </data>
+  <data name="ls_Editprofile" xml:space="preserve">
+    <value>编辑个人资料</value>
+  </data>
+  <data name="ls_Newphonenumber" xml:space="preserve">
+    <value>新手机号</value>
+  </data>
+  <data name="ls_Oldpassword" xml:space="preserve">
+    <value>旧密码</value>
+  </data>
+  <data name="ls_Newpassword" xml:space="preserve">
+    <value>新密码</value>
+  </data>
+  <data name="ls_WAddress" xml:space="preserve">
+    <value>仓库地址</value>
+  </data>
+  <data name="ls_Copysuccessfully" xml:space="preserve">
+    <value>复制成功</value>
+  </data>
+  <data name="ls_Signout" xml:space="preserve">
+    <value>登出</value>
+  </data>
+  <data name="ls_Deleteaccount" xml:space="preserve">
+    <value>删除帐户</value>
+  </data>
+  <data name="ls_Deleteafyd" xml:space="preserve">
+    <value>从您的设备中删除帐户？</value>
+  </data>
+  <data name="ls_SavedSuccessfully" xml:space="preserve">
+    <value>保存成功</value>
+  </data>
+  <data name="ls_Language" xml:space="preserve">
+    <value>语言</value>
+  </data>
+</root>
