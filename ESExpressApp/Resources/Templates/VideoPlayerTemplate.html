@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="{baseUrl}">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.9/plyr.css" />
+    <style>
+        html, body {
+            position: relative;
+            font-family: 'Didact Gothic', sans-serif;
+            height: 100%;
+            -webkit-font-smoothing: antialiased;
+            -webkit-font-smoothing: antialiased;
+            color: rgba(0,0,0,.87);
+            margin: 0;
+            padding: 0;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
+        html {
+            line-height: 1.15;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            text-align: left;
+            background-color: #003F58;
+        }
+
+        .welcome-container {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+            .welcome-container iframe, .welcome-container video, .plyr--video {
+                width: 100% !important;
+                height: 100% !important;
+            }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        {HtmlContent}
+    </div>
+    <script src="https://cdn.plyr.io/3.6.9/plyr.js"></script>
+    <script>
+        document.querySelectorAll('video')
+            .forEach((video) => {
+                video.setAttribute("id", "player");
+            });
+        var enterfullscreenFunction = function (event) {
+            window.location.href = "/execute/fullscreen?command=enter";
+        };
+        var exitfullscreenFunction = function (event) {
+            window.location.href = "/execute/fullscreen?command=exit";
+        };
+        const player = new Plyr('#player');
+        if (player) {
+            player.on('enterfullscreen', enterfullscreenFunction);
+            player.on('exitfullscreen', exitfullscreenFunction);
+        }
+        const iframePlayer = new Plyr('#iframe-player');
+        if (iframePlayer) {
+            iframePlayer.on('enterfullscreen', enterfullscreenFunction);
+            iframePlayer.on('exitfullscreen', exitfullscreenFunction);
+        }
+    </script>
+</body>
+</html>

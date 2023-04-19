@@ -60,7 +60,7 @@
               <VerticalStackLayout mct:StateView.StateKey="Error" VerticalOptions="FillAndExpand" BackgroundColor="White">
                <customControls:ErrorControl Title="{localization:Translate ls_Error}" Description="{localization:Translate ls_Oopserror}" Icon="{x:Static fontAwesome:FontAwesomeIcons.Bug}" RetryCommand="{Binding RetryCommand}" />
             </VerticalStackLayout>
-         <Grid RowDefinitions="120,*" RowSpacing="0" mct:StateView.StateKey="Success" VerticalOptions="FillAndExpand">
+         <Grid RowDefinitions="100,*" RowSpacing="0" mct:StateView.StateKey="Success" VerticalOptions="FillAndExpand">
              <Grid Grid.Row="0" RowDefinitions="*,50,50" BackgroundColor="{StaticResource Primary}">
                  <Label Text="Калкулатор" Padding="10,0" Grid.Row="1" FontSize="24" TextColor="White" VerticalTextAlignment="Center"  />
                 <CollectionView Grid.Row="2"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" SelectionMode="Single" ItemsSource="{Binding CalculatorTypeList}" SelectedItem="{Binding SelectedCalculatorType}">

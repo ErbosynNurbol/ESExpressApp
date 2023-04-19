@@ -2,8 +2,12 @@
 <Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:views="clr-namespace:ESExpressApp.Views"
+       xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
        xmlns:localization="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
        x:Class="ESExpressApp.AppShell">
+     <Shell.Behaviors>
+        <mct:StatusBarBehavior StatusBarColor="{StaticResource Primary}" StatusBarStyle="LightContent" />
+    </Shell.Behaviors>
   <TabBar Shell.TabBarTitleColor="{StaticResource QarLightTabSelectColor}"
         Shell.TabBarBackgroundColor="{StaticResource QarLightTabBgColor}"
         Shell.TabBarForegroundColor="{StaticResource QarLightTabSelectColor}"

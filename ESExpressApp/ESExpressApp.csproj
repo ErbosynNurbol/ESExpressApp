@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;net7.0-ios16.1;net7.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks>net7.0-android;net7.0-ios16.2;net7.0-maccatalyst</TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>ESExpressApp</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -35,7 +35,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" ForegroundScale="0.65" Color="#ffffff" />
 
 		<!-- Splash Screen -->
 		<MauiImage Include="Resources\Images\*" />
@@ -163,6 +163,8 @@
 	  <None Remove="Resources\.DS_Store" />
 	  <None Remove="Resources\Splash\" />
 	  <None Remove="Resources\Splash\esexpress.svg" />
+	  <None Remove="Resources\Templates\VideoPlayerTemplate.html" />
+	  <None Remove="Resources\Templates\ArticleViewTemplate.html" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Images\truct.png" />
@@ -188,6 +190,10 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiSplashScreen Include="Resources\Splash\esexpress.svg" Color="#ffffff" />
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Include="Resources\Templates\VideoPlayerTemplate.html" />
+	  <EmbeddedResource Include="Resources\Templates\ArticleViewTemplate.html" />
 	</ItemGroup>
 	<PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
     <AndroidKeyStore>True</AndroidKeyStore>
