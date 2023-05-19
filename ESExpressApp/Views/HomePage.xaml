@@ -13,6 +13,16 @@
              x:DataType="viewmodels:HomePageViewModel"
              Shell.NavBarIsVisible="False"
              Title="HomePage">
+    <ContentPage.Resources>
+           <Style TargetType="Label" x:Key="labelHomeTitle">
+               <Setter Property="FontAttributes"
+                                        Value="Bold" />
+                 <Setter Property="FontSize"
+                                        Value="20" />
+                 <Setter Property="Margin"
+                                        Value="10,20,10,5" />
+           </Style>
+    </ContentPage.Resources>
     <StackLayout
         Orientation="Vertical"
         mct:StateContainer.CurrentState="{Binding CurrentState}"
@@ -51,7 +61,7 @@
             </DataTemplate>
         </CarouselView.ItemTemplate>
     </CarouselView>
-      <Label Text="{localization:Translate ls_Services}" Margin="10,20,10,5" />
+      <Label Text="{localization:Translate ls_Services}" Style="{StaticResource labelHomeTitle}"  />
       <FlexLayout BindableLayout.ItemsSource="{Binding TariffList}" 
            Wrap="Wrap"
            Direction="Row"
@@ -71,7 +81,7 @@
             </DataTemplate>
         </BindableLayout.ItemTemplate>
     </FlexLayout>
-     <Label Text="{localization:Translate ls_Howwework}" Margin="10,20,10,5" />
+     <Label Text="{localization:Translate ls_Howwework}" Style="{StaticResource labelHomeTitle}" />
    <Grid VerticalOptions="Start" ColumnDefinitions="160,*">
        <Frame 
             CornerRadius="0"
@@ -100,12 +110,12 @@
                </DataTemplate>
            </CollectionView.ItemTemplate>
        </CollectionView>
-        <StackLayout Grid.Column="1" Orientation="Vertical">
-             <Image Source="{Binding HWorkSelected.ThumbnailUrl}" HorizontalOptions="FillAndExpand" Margin="10" />
-             <Label  Padding="15" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding HWorkSelected.ShortDescription}" />
-        </StackLayout>
+        <Grid Grid.Column="1"  RowDefinitions="150,*" Padding="5">
+             <Image Grid.Row="0" Source="{Binding HWorkSelected.ThumbnailUrl}" HorizontalOptions="Fill" VerticalOptions="FillAndExpand" Aspect="AspectFit" />
+             <Label Grid.Row="1" HorizontalTextAlignment="Center" Text="{Binding HWorkSelected.ShortDescription}" />
+        </Grid>
       </Grid>
-      <Label Text="{localization:Translate ls_Whatclientssay}" Margin="10,20,10,5" />
+      <Label Text="{localization:Translate ls_Whatclientssay}" Style="{StaticResource labelHomeTitle}" />
       <CarouselView x:Name="carouselComment" HeightRequest="200" PeekAreaInsets="50" ItemsSource="{Binding ClientsSayList}">
              <CarouselView.ItemsLayout>
         <LinearItemsLayout Orientation="Horizontal"

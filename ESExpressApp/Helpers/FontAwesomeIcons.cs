@@ -10,8 +10,6 @@ namespace FontAwesome
     /// </summary>
     public static partial class FontAwesomeIcons
     {
-        public const string Nurbol = "Mymul";
-
         /// <summary>
         /// fa-500px unicode value ("\uf26e").
         /// <para/>

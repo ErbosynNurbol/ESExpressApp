@@ -83,10 +83,10 @@
                            </StackLayout>
                         </StackLayout>
               </Grid>
-            <Grid RowDefinitions="70,100" RowSpacing="0" Padding="10" VerticalOptions="FillAndExpand">
+            <!--<Grid RowDefinitions="70,100" RowSpacing="0" Padding="10" VerticalOptions="FillAndExpand">
               <Frame Grid.Row="0" Grid.RowSpan="2" BorderColor="#D6D6D6" BackgroundColor="#F5F5F5" />
-              <Image Grid.Row="0" Grid.RowSpan="2"  Source="{Binding SelectedShippingMethod.ThumbnailUrl}" VerticalOptions="FillAndExpand" Aspect="AspectFill" Opacity="0.1" HorizontalOptions="FillAndExpand" />
-             <StackLayout Grid.Row="0" Orientation="Vertical" Padding="2">
+              <Image  Grid.Row="0" Grid.RowSpan="2" IsVisible="{Binding SelectedShippingMethod, Converter={StaticResource IsNotNullConverter}}"  Source="{Binding SelectedShippingMethod.ThumbnailUrl}" VerticalOptions="FillAndExpand" Aspect="AspectFill" Opacity="0.1" HorizontalOptions="FillAndExpand" />
+           <StackLayout Grid.Row="0" Orientation="Vertical" Padding="2">
                 <CollectionView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" SelectionMode="Single" ItemsSource="{Binding ShippingMethodList}" SelectedItem="{Binding SelectedShippingMethod}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" HorizontalItemSpacing="0" Span="{Binding ShippingMethodList.Count}" />
@@ -111,7 +111,7 @@
                      </Label.GestureRecognizers>
                 </Label>
            </Grid>
-        </Grid>
+        </Grid>-->
              <CollectionView
                     SelectionMode="Single"
                     HeightRequest="200"

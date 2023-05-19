@@ -8,20 +8,20 @@
      <Shell.Behaviors>
         <mct:StatusBarBehavior StatusBarColor="{StaticResource Primary}" StatusBarStyle="LightContent" />
     </Shell.Behaviors>
-  <TabBar Shell.TabBarTitleColor="{StaticResource QarLightTabSelectColor}"
+  <TabBar x:Name="shellTabBar" Shell.TabBarTitleColor="{StaticResource QarLightTabSelectColor}"
         Shell.TabBarBackgroundColor="{StaticResource QarLightTabBgColor}"
         Shell.TabBarForegroundColor="{StaticResource QarLightTabSelectColor}"
         Shell.TabBarUnselectedColor="{StaticResource QarLightTabUnSelectColor}">
-       <Tab Title="{localization:Translate ls_Home}" Icon="dphome">
+       <Tab x:Name="tabHome" Title="{localization:Translate ls_Home}" Icon="dphome">
            <ShellContent ContentTemplate="{DataTemplate views:HomePage}"/>
        </Tab>
-       <Tab Title="{localization:Translate ls_Calculator}" Icon="dpcalculator">
+       <Tab x:Name="tabCalculator" Title="{localization:Translate ls_Calculator}" Icon="dpcalculator">
            <ShellContent ContentTemplate="{DataTemplate views:CalculatorPage}"  />
        </Tab>
-       <Tab Title="{localization:Translate ls_Help}" Icon="dpinformation">
+       <Tab x:Name="tabHelp" Title="{localization:Translate ls_Help}" Icon="dpinformation">
            <ShellContent ContentTemplate="{DataTemplate views:InfoPage}" />
        </Tab>
-       <Tab Title="{localization:Translate ls_Profile}" Icon="dpprofile">
+       <Tab x:Name="tabProfile" Title="{localization:Translate ls_Profile}" Icon="dpprofile">
            <ShellContent ContentTemplate="{DataTemplate views:ProfilePage}" />
        </Tab>
     </TabBar>

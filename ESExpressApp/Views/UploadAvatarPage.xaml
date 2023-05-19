@@ -1,9 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cv="clr-namespace:Camera.MAUI;assembly=Camera.MAUI"
              x:Class="ESExpressApp.Views.UploadAvatarPage"
              Title="UploadAvatarPage">
-    <VerticalStackLayout>
-        <Label Text="Hello Camera!!!!" />
-    </VerticalStackLayout>
+    <Grid Padding="20,10">
+      <Frame HeightRequest="300" WidthRequest="300" CornerRadius="150" VerticalOptions="Start" Margin="50,0" Padding="0" HorizontalOptions="Center" IsClippedToBounds="True" BackgroundColor="Transparent" >
+          <cv:CameraView x:Name="cameraView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+      </Frame>
+      <Button IsVisible="False" x:Name="controlButton" Text="Copture Image" />
+    </Grid>
 </ContentPage>

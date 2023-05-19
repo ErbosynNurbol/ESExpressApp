@@ -7,7 +7,7 @@
              ColumnDefinitions="110,*"
              ColumnSpacing="10"
              x:Class="ESExpressApp.Views.Home.ClientsSayTemplate">
-      <Frame Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#ECF0F6" Opacity="0.65" CornerRadius="6" Margin="0" VerticalOptions="FillAndExpand"/>
+      <Frame Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#ECF0F6" BorderColor="Transparent" Opacity="0.65" CornerRadius="6" Margin="0" VerticalOptions="FillAndExpand"/>
 
     <toolkit:AvatarView Grid.Column="0" ImageSource="{Binding AvatarUrl}" HeightRequest="100" WidthRequest="100" CornerRadius="50" VerticalOptions="Center" HorizontalOptions="Center" />
 

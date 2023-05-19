@@ -86,6 +86,11 @@ namespace ESExpressApp.ViewModels
         }
 
         [RelayCommand]
+        private void UploadAvatar()
+        {
+            GoToAsync($"{nameof(UploadAvatarPage)}");
+        }
+        [RelayCommand]
         private void Save()
         {
             var dicParameters = new Dictionary<string, string>

@@ -15,19 +15,21 @@ namespace ESExpressApp.ViewModels
     {
 
         [ObservableProperty]
-        ObservableCollection<ProfileMenuItemModel> mainMenuList;
+        ObservableCollection<ProfileMenuItemModel> mainMenuList = new ObservableCollection<ProfileMenuItemModel>();
         [ObservableProperty]
         ProfileMenuItemModel mainMenuSelected;
         [ObservableProperty]
-        ObservableCollection<ProfileMenuItemModel> settingsMenuList;
+        ObservableCollection<ProfileMenuItemModel> settingsMenuList = new ObservableCollection<ProfileMenuItemModel>();
         [ObservableProperty]
         ProfileMenuItemModel settingsMenuSelected;
         [ObservableProperty]
         PersonModel person;
         [ObservableProperty]
-        ObservableCollection<ShippingMethodModel> shippingMethodList;
+        ObservableCollection<ShippingMethodModel> shippingMethodList = new ObservableCollection<ShippingMethodModel>();
         [ObservableProperty]
         ShippingMethodModel selectedShippingMethod;
+        [ObservableProperty]
+        string shippingMethodBackgroudImage;
         private readonly ILocalizationResourceManager resourceManager;
         public ProfilePageViewModel(ILocalizationResourceManager resourceManager)
 		{
@@ -41,37 +43,12 @@ namespace ESExpressApp.ViewModels
             CurrentState = States.Loading;
             LoadData();
         }
+
         [RelayCommand]
         public void Refresh()
         {
             IsRefreshing = true;
-            Person = AppSingleton.GetInstance().GetLoginInfo()?.UserInfo;
-            if (MainMenuList == null)
-            {
-                MainMenuList = GetDefaultMainMenuList();
-            }
-            AjaxMsgModel ajaxMsg = APIHelper.Query($"/api/query/PersonPackageCount", null);
-            if (ajaxMsg != null && ajaxMsg.Status.Equals("Success", StringComparison.OrdinalIgnoreCase))
-            {
-                Dictionary<string, int> divDic = JsonHelper.DeserializeObject<Dictionary<string, int>>(ajaxMsg.Data.ToString());
-                foreach (var item in MainMenuList)
-                {
-                    if (divDic.ContainsKey(item.Key.ToString().ToLower()))
-                    {
-                        item.Count = divDic[item.Key.ToString().ToLower()];
-                    }
-                }
-            }
-            ajaxMsg = APIHelper.Query($"/api/query/ShippingMethodList", null);
-            if (ajaxMsg != null && ajaxMsg.Status.Equals("Success", StringComparison.OrdinalIgnoreCase))
-            {
-                ShippingMethodList = JsonHelper.DeserializeObject<ObservableCollection<ShippingMethodModel>>(ajaxMsg.Data.ToString());
-                foreach (var item in ShippingMethodList)
-                {
-                    item.WarehouseAddress +=  (Person!=null?$"{Person.PersonCode}(收)":"");
-                }
-                SelectedShippingMethod = ShippingMethodList.Count() > 0 ? ShippingMethodList[0]:null; ;
-            }
+            LoadData();
             IsRefreshing = false;
         }
 
@@ -186,38 +163,46 @@ namespace ESExpressApp.ViewModels
             }
             if (IsBusy) return;
             IsBusy = true;
-
             Person = AppSingleton.GetInstance().GetLoginInfo()?.UserInfo;
-
-            if (MainMenuList == null)
+            if (MainMenuList == null || MainMenuList.Count() ==0)
             {
                 MainMenuList = GetDefaultMainMenuList();
             }
-
-            SettingsMenuList = new ObservableCollection<ProfileMenuItemModel>()
+            if (SettingsMenuList == null || SettingsMenuList.Count() == 0)
             {
-                 new ProfileMenuItemModel(){
-                    Title= this.resourceManager["ls_Language"],
-                    Key=ProfileMenuStatus.Language,
-                    Icon= FontAwesome.FontAwesomeIcons.Language,
-                    Font="fregular"
-                },
-                  new ProfileMenuItemModel(){
-                    Title= this.resourceManager["ls_Changepassword"],
-                    Key=ProfileMenuStatus.ChangePassword,
-                    Icon= FontAwesome.FontAwesomeIcons.LockAlt,
-                    Font="fregular"
-                },
-                   new ProfileMenuItemModel(){
-                    Title= this.resourceManager["ls_Personalinfo"],
-                    Key=ProfileMenuStatus.PersonalInfo,
-                    Icon= FontAwesome.FontAwesomeIcons.UserCog,
-                    Font="fregular"
+                SettingsMenuList = GetDefaultSettingsMenuList();
+            }
+            Task.Run(() =>
+            {
+                AjaxMsgModel ajaxMsg = APIHelper.Query($"/api/query/PersonPackageCount", null);
+                if (ajaxMsg != null && ajaxMsg.Status.Equals("Success", StringComparison.OrdinalIgnoreCase))
+                {
+                    Dictionary<string, int> divDic = JsonHelper.DeserializeObject<Dictionary<string, int>>(ajaxMsg.Data.ToString());
+                    foreach (var item in MainMenuList)
+                    {
+                        if (divDic.ContainsKey(item.Key.ToString().ToLower()))
+                        {
+                            item.Count = divDic[item.Key.ToString().ToLower()];
+                        }
+                    }
                 }
-            };
-            Refresh();
-            IsBusy = false;
-            CurrentState = States.Success;
+                ajaxMsg = APIHelper.Query($"/api/query/ShippingMethodList", null);
+                if (ajaxMsg != null && ajaxMsg.Status.Equals("Success", StringComparison.OrdinalIgnoreCase))
+                {
+                    ShippingMethodList = JsonHelper.DeserializeObject<ObservableCollection<ShippingMethodModel>>(ajaxMsg.Data.ToString());
+                    if (ShippingMethodList != null && ShippingMethodList.Count() > 0)
+                    {
+                        foreach (var item in ShippingMethodList)
+                        {
+                            item.WarehouseAddress += (Person != null ? $"{Person.PersonCode}(收)" : "");
+                        }
+                        SelectedShippingMethod = ShippingMethodList.Count() > 0 ? ShippingMethodList.FirstOrDefault() : null;
+                    }
+                }
+                IsBusy = false;
+                CurrentState = States.Success;
+            });
+          
         }
 
         private ObservableCollection<ProfileMenuItemModel> GetDefaultMainMenuList()
@@ -246,6 +231,31 @@ namespace ESExpressApp.ViewModels
                     Title= this.resourceManager["ls_Transactioncompleted"],
                     Key= ProfileMenuStatus.TransactionCompleted,
                     Icon= FontAwesome.FontAwesomeIcons.BoxCheck,
+                    Font="fregular"
+                }
+            };
+        }
+
+        private ObservableCollection<ProfileMenuItemModel> GetDefaultSettingsMenuList()
+        {
+             return new ObservableCollection<ProfileMenuItemModel>()
+            {
+                 new ProfileMenuItemModel(){
+                    Title= this.resourceManager["ls_Language"],
+                    Key=ProfileMenuStatus.Language,
+                    Icon= FontAwesome.FontAwesomeIcons.Language,
+                    Font="fregular"
+                },
+                  new ProfileMenuItemModel(){
+                    Title= this.resourceManager["ls_Changepassword"],
+                    Key=ProfileMenuStatus.ChangePassword,
+                    Icon= FontAwesome.FontAwesomeIcons.LockAlt,
+                    Font="fregular"
+                },
+                   new ProfileMenuItemModel(){
+                    Title= this.resourceManager["ls_Personalinfo"],
+                    Key=ProfileMenuStatus.PersonalInfo,
+                    Icon= FontAwesome.FontAwesomeIcons.UserCog,
                     Font="fregular"
                 }
             };

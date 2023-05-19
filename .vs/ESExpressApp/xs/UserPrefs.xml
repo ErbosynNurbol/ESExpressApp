@@ -1,22 +1,80 @@
 ﻿<Properties StartupConfiguration="{3483997C-E47A-4AAF-AB92-43F3F3EA31FA}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.ESExpressApp PreferredExecutionTarget="Android.pixel_5_-_api_32" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.00008120-000815802E6BC01E" />
   <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.46" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.pixel_5_-_api_32" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="ESExpressApp/Platforms/iOS/UserNotificationCenterDelegate.cs">
+    <Files>
+      <File FileName="ESExpressApp/Platforms/iOS/AppDelegate.cs" Line="40" Column="52" />
+      <File FileName="ESExpressApp/CustomControls/EmptyControl.xaml" />
+      <File FileName="ESExpressApp/CustomControls/CanBackHeaderControl.xaml" />
+      <File FileName="ESExpressApp/CustomControls/CalculatorEntryControl.xaml" />
+      <File FileName="ESExpressApp/Platforms/iOS/Program.cs" />
+      <File FileName="ESExpressApp/AppShell.xaml" />
+      <File FileName="ESExpressApp/App.xaml" />
+      <File FileName="ESExpressApp/MauiProgram.cs" />
+      <File FileName="ESExpressApp/Views/EditProfilePage.xaml" />
+      <File FileName="ESExpressApp/Views/HomePage.xaml" />
+      <File FileName="ESExpressApp/Platforms/MacCatalyst/AppDelegate.cs" />
+      <File FileName="ESExpressApp/Platforms/MacCatalyst/Program.cs" />
+      <File FileName="ESExpressApp/Platforms/MacCatalyst/Info.plist" />
+      <File FileName="ESExpressApp/Platforms/Tizen/Main.cs" />
+      <File FileName="ESExpressApp/Platforms/Tizen/tizen-manifest.xml" />
+      <File FileName="ESExpressApp/CustomControls/ErrorControl.xaml" />
+      <File FileName="ESExpressApp/CustomControls/LoadingControl.xaml" />
+      <File FileName="ESExpressApp/CustomControls/PhoneEntryControl.xaml" />
+      <File FileName="ESExpressApp/CustomControls/SearchWaybillNumberControl.xaml" />
+      <File FileName="ESExpressApp/CustomControls/StandardEntryControl.xaml" />
+      <File FileName="ESExpressApp/CustomControls/VerifyCodeEntryControl.xaml" />
+      <File FileName="ESExpressApp/Handlers/BorderlessEntry.cs" />
+      <File FileName="ESExpressApp/Helpers/AESHelper.cs" />
+      <File FileName="ESExpressApp/Helpers/AppSingleton.cs" />
+      <File FileName="ESExpressApp/Helpers/FontAwesomeHelper.cs" />
+      <File FileName="ESExpressApp/Helpers/FontAwesomeIcons.cs" />
+      <File FileName="ESExpressApp/Helpers/APIHelper.cs" />
+      <File FileName="ESExpressApp/ViewModels/ProfilePageViewModel.cs" />
+      <File FileName="ESExpressApp/ViewModels/HomePageViewModel.cs" />
+      <File FileName="ESExpressApp/ViewModels/TransactionCompletedListPageViewModel.cs" />
+      <File FileName="ESExpressApp/ViewModels/EditProfilePageViewModel.cs" />
+      <File FileName="ESExpressApp/Platforms/Android/AndroidManifest.xml" />
+      <File FileName="ESExpressApp/Platforms/Android/MainActivity.cs" />
+      <File FileName="ESExpressApp/Models/PushNotificationReceived.cs" />
+      <File FileName="ESExpressApp/Models/PushNotificationRequest.cs" />
+      <File FileName="ESExpressApp/AppShell.xaml.cs" />
+      <File FileName="ESExpressApp/Platforms/iOS/Info.plist" />
+      <File FileName="ESExpressApp/ESExpressApp.csproj" />
+      <File FileName="ESExpressApp/Platforms/iOS/UserNotificationCenterDelegate.cs" Line="24" Column="1" />
+      <File FileName="ESExpressApp/App.xaml.cs" />
+      <File FileName="../../../../../usr/local/share/dotnet/packs/Microsoft.iOS.Sdk/16.2.2054/tools/msbuild/iOS/Xamarin.Shared.targets" />
+      <File FileName="ESExpressApp/ViewModels/InfoPageViewModel.cs" />
+      <File FileName="ESExpressApp/Views/ProfilePage.xaml" />
+      <File FileName="ESExpressApp/Views/UploadAvatarPage.xaml" />
+      <File FileName="ESExpressApp/Views/RecoverPage.xaml" />
+      <File FileName="ESExpressApp/Platforms/iOS/GoogleService-Info.plist" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ESExpressApp" expanded="True">
-            <Node name="ESExpressApp" expanded="True" />
+            <Node name="ESExpressApp" expanded="True">
+              <Node name="Platforms" expanded="True">
+                <Node name="iOS" expanded="True">
+                  <Node name="UserNotificationCenterDelegate.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.ESExpressApp PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.00008120-000815802E6BC01E" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/erbosynnurbol/Documents/GitHub/ESExpressApp/ESExpressApp/Platforms/iOS/UserNotificationCenterDelegate.cs" relfile="ESExpressApp/Platforms/iOS/UserNotificationCenterDelegate.cs" line="21" column="1" />
+      <Breakpoint file="/Users/erbosynnurbol/Documents/GitHub/ESExpressApp/ESExpressApp/Platforms/iOS/UserNotificationCenterDelegate.cs" relfile="ESExpressApp/Platforms/iOS/UserNotificationCenterDelegate.cs" line="11" column="1" />
+      <Breakpoint file="/Users/erbosynnurbol/Documents/GitHub/ESExpressApp/ESExpressApp/Platforms/iOS/UserNotificationCenterDelegate.cs" relfile="ESExpressApp/Platforms/iOS/UserNotificationCenterDelegate.cs" line="12" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>

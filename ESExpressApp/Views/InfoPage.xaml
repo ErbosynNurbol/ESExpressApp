@@ -31,7 +31,7 @@
                <customControls:ErrorControl Title="{localization:Translate ls_Error}" Description="{localization:Translate ls_Oopserror}" Icon="{x:Static fontAwesome:FontAwesomeIcons.Bug}" RetryCommand="{Binding RetryCommand}" />
             </VerticalStackLayout>
          <StackLayout mct:StateView.StateKey="Success" VerticalOptions="FillAndExpand" Orientation="Vertical" Padding="0,10,0,0">
-           <Label Text="{localization:Translate ls_Help}" Padding="10,10" FontSize="24" TextColor="White" VerticalTextAlignment="Center"  />
+           <Label Text="{localization:Translate ls_Help}" Padding="10,10" FontSize="26" FontAttributes="Bold" TextColor="White" VerticalTextAlignment="Center"  />
            <CollectionView
                SelectionMode="Single"
                BackgroundColor="White"

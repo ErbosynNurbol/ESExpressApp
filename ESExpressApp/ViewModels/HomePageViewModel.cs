@@ -138,6 +138,7 @@ namespace ESExpressApp.ViewModels
                         {
                             hWork.IconUnicode = FontAwesomeHelper.GetFontUnicodeValueByClass(hWork.Icon);
                             hWork.IconFontFamily = FontAwesomeHelper.GetFontFamilyNameByClass(hWork.Icon);
+                            hWork.ThumbnailUrl = hWork.ThumbnailUrl.Replace("_small.","_middle.");
                         }
                         HWorkList = indexData?.HWorkList;
                         HWorkHeight = HWorkList.Count() * 67.0;

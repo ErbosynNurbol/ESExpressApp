@@ -7,13 +7,20 @@
              x:Class="ESExpressApp.CustomControls.EmptyControl">
   <StackLayout Orientation="Horizontal"
               VerticalOptions="Start" 
-              HorizontalOptions="CenterAndExpand"
-               Spacing="10"
+              HorizontalOptions="FillAndExpand"
               Padding="15,30">
-    <Label FontSize="18" Text="{x:Static fontAwesome:FontAwesomeIcons.InfoCircle}" 
-                                      FontFamily="fregular" 
-                                      TextColor="#777"  />
-    <Label FontSize="14" Text="{localization:Translate ls_Nodataavailable}" 
-                                       TextColor="#777"  />
+    <StackLayout Orientation="Horizontal"
+              HorizontalOptions="Center"
+               Spacing="10">
+    <Label FontSize="18"
+           Text="{x:Static fontAwesome:FontAwesomeIcons.InfoCircle}" 
+           FontFamily="fregular" 
+           TextColor="#777"
+           HorizontalOptions="Start" />
+        <Label FontSize="14"
+           Text="{localization:Translate ls_Nodataavailable}"
+           HorizontalOptions="Start"
+           TextColor="#777"  />
+</StackLayout>
 </StackLayout>
 </Grid>

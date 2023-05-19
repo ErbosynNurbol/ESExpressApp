@@ -38,7 +38,11 @@
                                         TextColor="{StaticResource Primary}"
                                         FontSize="20"
                                         HorizontalTextAlignment="Center"
-                                        VerticalTextAlignment="Center" />
+                                        VerticalTextAlignment="Center" >
+                                           <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding UploadAvatarCommand}"></TapGestureRecognizer>
+                                            </Label.GestureRecognizers>
+                                         </Label>
                                 </Frame>
                               </Grid>
                         <StackLayout Orientation="Vertical" Spacing="5">

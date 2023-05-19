@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1051767016094",
+    "project_id": "esexpress-68600",
+    "storage_bucket": "esexpress-68600.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051767016094:android:7c03f161a4d2b892ba898f",
+        "android_client_info": {
+          "package_name": "kz.esexpress.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1051767016094-r4rlq4sc77jnaf693ilgun0449ao97gi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnkDDXwU64IDqGN1DTNCsqAiAxklZqglY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1051767016094-r4rlq4sc77jnaf693ilgun0449ao97gi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

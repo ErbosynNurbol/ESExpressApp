@@ -1,9 +1,12 @@
 ﻿
+using CommunityToolkit.Mvvm.Messaging;
+
 namespace ESExpressApp;
 
 public partial class AppShell : Shell
 {
     public const string localPassword = "ZESEXPRESS2023@";
+    private string _deviceToken;
     public AppShell()
 	{
 		InitializeComponent();
@@ -25,6 +28,41 @@ public partial class AppShell : Shell
         {
             TryLocalLogin(out LoginInfoModel loginInfo);
         });
+
+        WeakReferenceMessenger.Default.Register<PushNotificationReceived>(this, (r, m) =>
+        {
+            NavigateToPage();
+        });
+        NavigateToPage();
+    }
+
+    public void SwitchtoTab(int tabIndex)
+    {
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            switch (tabIndex)
+            {
+                case 0: shellTabBar.CurrentItem = tabHome; break;
+                case 1: shellTabBar.CurrentItem = tabCalculator; break;
+                case 2: shellTabBar.CurrentItem = tabHelp; break;
+                case 3: shellTabBar.CurrentItem = tabProfile; break;
+            };
+        });
+    }
+
+    private void NavigateToPage()
+    {
+        if (Preferences.ContainsKey("navigationID"))
+        {
+            if(int.TryParse(Preferences.Get("navigationID", "0"),out int navigationID))
+            {
+                if (navigationID <= 4) //Shell Page
+                {
+                    SwitchtoTab(navigationID);
+                }
+            }
+            Preferences.Remove("navigationID");
+        }
     }
 
     #region Login  +Login(string phone, string password, int countryId, out string message)
@@ -51,14 +89,15 @@ public partial class AppShell : Shell
     public static bool Login(string phone, string password, int countryId, out string message)
     {
         message = string.Empty;
-        
+
+        string deviceToken = Preferences.Get("deviceToken", string.Empty);
          var dicParameters = new Dictionary<string, string>
                     {
                       {"phone", phone},
                       {"password", password},
                       {"countryId", countryId.ToString()},
-                      //{"AndroidToken", DeviceInfo.Platform == DevicePlatform.Android? CrossFirebasePushNotification.Current.Token: ""},
-                      //{"IOSToken", DeviceInfo.Platform == DevicePlatform.iOS ? CrossFirebasePushNotification.Current.Token : ""}
+                      {"androidToken", DeviceInfo.Current.Platform  == DevicePlatform.Android? deviceToken: ""},
+                      {"iOSToken", DeviceInfo.Current.Platform ==  DevicePlatform.iOS ? deviceToken : ""}
                     };
         AjaxMsgModel ajaxMsg = APIHelper.Query($"/api/user/login", dicParameters);
         if (ajaxMsg != null && ajaxMsg.Status.Equals("Success", StringComparison.OrdinalIgnoreCase))
