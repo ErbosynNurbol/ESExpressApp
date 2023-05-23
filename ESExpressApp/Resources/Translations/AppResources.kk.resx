@@ -139,7 +139,7 @@
     <value>Клиенттер не дейді</value>
   </data>
   <data name="ls_Waybillnumber" xml:space="preserve">
-    <value>Жолдама нөмірі</value>
+    <value>Трек-нөмір</value>
   </data>
   <data name="ls_Selectlanguage" xml:space="preserve">
     <value>Тілді таңдаңыз</value>
@@ -347,5 +347,8 @@
   </data>
   <data name="ls_Language" xml:space="preserve">
     <value>Тіл</value>
+  </data>
+  <data name="ls_Notifications" xml:space="preserve">
+    <value>Хабарламалар</value>
   </data>
 </root>

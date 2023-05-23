@@ -15,20 +15,32 @@ public class AppDelegate : MauiUIApplicationDelegate, IMessagingDelegate
     {
         Firebase.Core.App.Configure();
 
-        if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
+        //if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
+        //{
+        //    var authOption = UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound;
+
+        //    UNUserNotificationCenter.Current.RequestAuthorization(authOption, (granted, error) =>
+        //    {
+
+        //    });
+
+        //    UNUserNotificationCenter.Current.Delegate = new UserNotificationCenterDelegate();
+
+        //    Messaging.SharedInstance.AutoInitEnabled = true;
+        //    Messaging.SharedInstance.Delegate = this;
+        //}
+        var authOption = UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound;
+
+        UNUserNotificationCenter.Current.RequestAuthorization(authOption, (granted, error) =>
         {
-            var authOption = UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound;
 
-            UNUserNotificationCenter.Current.RequestAuthorization(authOption, (granted, error) =>
-            {
+        });
 
-            });
+        UNUserNotificationCenter.Current.Delegate = new UserNotificationCenterDelegate();
 
-            UNUserNotificationCenter.Current.Delegate = new UserNotificationCenterDelegate();
+        Messaging.SharedInstance.AutoInitEnabled = true;
+        Messaging.SharedInstance.Delegate = this;
 
-            Messaging.SharedInstance.AutoInitEnabled = true;
-            Messaging.SharedInstance.Delegate = this;
-        }
         UIApplication.SharedApplication.RegisterForRemoteNotifications();
 
         return base.FinishedLaunching(application, launchOptions);

@@ -10,7 +10,7 @@
              x:DataType="viewmodels:NotshippedListPageViewModel"
              Shell.TabBarIsVisible="False"
              x:Class="ESExpressApp.Views.TransactionCompletedListPage"
-             Title="TransactionCompletedListPage">
+             Title="{localization:Translate ls_Transactioncompleted}">
      <StackLayout
         Orientation="Vertical"
         mct:StateContainer.CurrentState="{Binding CurrentState}"

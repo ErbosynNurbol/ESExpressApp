@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using CommunityToolkit.Mvvm.Messaging;
+using Foundation;
 using UserNotifications;
 
 namespace ESExpressApp.Platforms.iOS
@@ -17,9 +18,14 @@ namespace ESExpressApp.Platforms.iOS
             WeakReferenceMessenger.Default.Send(new PushNotificationReceived("test"));
         }
 
+
+        [Export("userNotificationCenter:willPresentNotification:withCompletionHandler:")]
         public override void WillPresentNotification(UNUserNotificationCenter center, UNNotification notification, Action<UNNotificationPresentationOptions> completionHandler)
         {
-            completionHandler(UNNotificationPresentationOptions.Banner);
+            completionHandler(UNNotificationPresentationOptions.Sound | UNNotificationPresentationOptions.Badge | UNNotificationPresentationOptions.Banner | UNNotificationPresentationOptions.List);
+
+            //completionHandler(UNNotificationPresentationOptions.Banner);
+            //completionHandler(UNNotificationPresentationOptions.Alert);
         }
 
     }

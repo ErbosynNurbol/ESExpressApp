@@ -348,4 +348,7 @@
   <data name="ls_Language" xml:space="preserve">
     <value>Dil</value>
   </data>
+  <data name="ls_Notifications" xml:space="preserve">
+    <value>Bildirimler</value>
+  </data>
 </root>

@@ -74,6 +74,9 @@ public static class MauiProgram
         builder.Services.AddTransient<Views.WaybillNumberPage>();
         builder.Services.AddTransient<ViewModels.WaybillNumberPageViewModel>();
 
+        builder.Services.AddTransient<Views.NotifyPage>();
+        builder.Services.AddTransient<ViewModels.NotifyPageViewModel>();
+
         return builder.Build();
 	}
 }

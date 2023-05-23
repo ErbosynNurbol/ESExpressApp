@@ -6,7 +6,7 @@
              xmlns:viewmodels="clr-namespace:ESExpressApp.ViewModels"
              xmlns:customControls="clr-namespace:ESExpressApp.CustomControls"
              xmlns:localization="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
-               xmlns:fontAwesome="clr-namespace:FontAwesome"
+             xmlns:fontAwesome="clr-namespace:FontAwesome"
              BackgroundColor="{StaticResource Primary}"
              Shell.NavBarIsVisible="False"
              x:DataType="viewmodels:CalculatorPageViewModel"

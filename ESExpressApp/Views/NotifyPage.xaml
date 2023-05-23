@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             xmlns:localization="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
+             xmlns:viewmodels="clr-namespace:ESExpressApp.ViewModels"
+             xmlns:customControls="clr-namespace:ESExpressApp.CustomControls"
+             xmlns:models="clr-namespace:ESExpressApp.Models"
+             BackgroundColor="{StaticResource Primary}"
+             Shell.NavBarIsVisible="False"
+             x:DataType="viewmodels:NotifyPageViewModel"
+             x:Class="ESExpressApp.Views.NotifyPage">
+     <StackLayout
+        Orientation="Vertical"
+        mct:StateContainer.CurrentState="{Binding CurrentState}"
+        mct:StateContainer.CanStateChange="{Binding CanStateChange}">
+        <mct:StateContainer.StateViews>
+             <VerticalStackLayout mct:StateView.StateKey="Loading" BackgroundColor="White" VerticalOptions="FillAndExpand">
+                  <customControls:LoadingControl VerticalOptions="FillAndExpand" />
+            </VerticalStackLayout>
+            <VerticalStackLayout mct:StateView.StateKey="Offline" VerticalOptions="FillAndExpand" BackgroundColor="White">
+               <customControls:ErrorControl Title="{localization:Translate ls_Connectionerror}" Description="{localization:Translate ls_Pcyicta}" Icon="{x:Static fontAwesome:FontAwesomeIcons.WifiSlash}" RetryCommand="{Binding RetryCommand}" />
+            </VerticalStackLayout>
+              <VerticalStackLayout mct:StateView.StateKey="Error" VerticalOptions="FillAndExpand" BackgroundColor="White">
+               <customControls:ErrorControl Title="{localization:Translate ls_Error}" Description="{localization:Translate ls_Oopserror}" Icon="{x:Static fontAwesome:FontAwesomeIcons.Bug}" RetryCommand="{Binding RetryCommand}" />
+            </VerticalStackLayout>
+          <StackLayout mct:StateView.StateKey="Success" VerticalOptions="FillAndExpand" Orientation="Vertical" Padding="0,10,0,0">
+           <Label Text="{localization:Translate ls_Notifications}" Padding="10,10" FontSize="26" FontAttributes="Bold" TextColor="White" VerticalTextAlignment="Center"  />
+           <RefreshView IsRefreshing="{Binding IsRefreshing}" BackgroundColor="White"
+             Command="{Binding RefreshCommand}"  VerticalOptions="FillAndExpand" >
+                         <CollectionView 
+                        ItemsSource="{Binding PushLogList}"
+                        SelectionMode="None"
+                        RemainingItemsThreshold="1"
+                        RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}"
+                        BackgroundColor="White"
+                        >
+                            <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:PushLogModel">
+                                <Grid Padding="0,15,0,0">
+                                    <Frame BackgroundColor="#eeeeee" CornerRadius="5" Padding="15,5" Margin="0">
+                                        <StackLayout >
+                                            <Label Text="{Binding Title}" FontSize="16" TextColor="#212529"/>
+                                            <Label Text="{Binding Body}" FontSize="12" TextColor="#212529"/>
+                                            <BoxView  BackgroundColor="#737373" HeightRequest="1" HorizontalOptions="FillAndExpand"/>
+                                            <Label Text="{Binding PushTime}" HorizontalOptions="End" HorizontalTextAlignment="End" FontSize="12" TextColor="#333333"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <customControls:EmptyControl />
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+            </RefreshView>
+        </StackLayout>
+        </mct:StateContainer.StateViews>
+   </StackLayout>
+</ContentPage>

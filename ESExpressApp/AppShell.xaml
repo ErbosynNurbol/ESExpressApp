@@ -21,6 +21,9 @@
        <Tab x:Name="tabHelp" Title="{localization:Translate ls_Help}" Icon="dpinformation">
            <ShellContent ContentTemplate="{DataTemplate views:InfoPage}" />
        </Tab>
+        <Tab x:Name="tabNotify" Title="{localization:Translate ls_Notifications}" Icon="dnotify">
+           <ShellContent ContentTemplate="{DataTemplate views:NotifyPage}" />
+       </Tab>
        <Tab x:Name="tabProfile" Title="{localization:Translate ls_Profile}" Icon="dpprofile">
            <ShellContent ContentTemplate="{DataTemplate views:ProfilePage}" />
        </Tab>
