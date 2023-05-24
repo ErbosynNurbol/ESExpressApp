@@ -32,6 +32,7 @@
                                   <mct:AvatarView ImageSource="{Binding Person.AvatarUrl}" HorizontalOptions="Center" HeightRequest="106" WidthRequest="106" CornerRadius="53" />
                                   <Frame  CornerRadius="19" Margin="0,0,-50,0" Padding="5"  WidthRequest="38" HeightRequest="38" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="#ffffff" HasShadow="True"  >
                                      <Label Text="{x:Static fontAwesome:FontAwesomeIcons.CameraRetro}"
+                                        IsVisible="False"
                                         x:Name="lblUploadAvatar"
                                         FontFamily="fregular"
                                         FontAttributes="Bold"

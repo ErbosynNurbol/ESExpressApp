@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{3483997C-E47A-4AAF-AB92-43F3F3EA31FA}|Default">
   <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.46" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ESExpressApp/AppShell.xaml.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ESExpressApp/Views/EditProfilePage.xaml">
     <Files>
       <File FileName="ESExpressApp/Platforms/iOS/AppDelegate.cs" />
       <File FileName="ESExpressApp/CustomControls/EmptyControl.xaml" />
@@ -10,8 +10,8 @@
       <File FileName="ESExpressApp/Platforms/iOS/Program.cs" />
       <File FileName="ESExpressApp/AppShell.xaml" />
       <File FileName="ESExpressApp/App.xaml" />
-      <File FileName="ESExpressApp/MauiProgram.cs" />
-      <File FileName="ESExpressApp/Views/EditProfilePage.xaml" />
+      <File FileName="ESExpressApp/MauiProgram.cs" Line="17" Column="14" />
+      <File FileName="ESExpressApp/Views/EditProfilePage.xaml" Line="35" Column="41" />
       <File FileName="ESExpressApp/Views/HomePage.xaml" />
       <File FileName="ESExpressApp/Platforms/MacCatalyst/AppDelegate.cs" />
       <File FileName="ESExpressApp/Platforms/MacCatalyst/Program.cs" />
@@ -36,7 +36,7 @@
       <File FileName="ESExpressApp/Platforms/Android/MainActivity.cs" />
       <File FileName="ESExpressApp/Models/PushNotificationReceived.cs" />
       <File FileName="ESExpressApp/Models/PushNotificationRequest.cs" />
-      <File FileName="ESExpressApp/AppShell.xaml.cs" Line="63" Column="14" />
+      <File FileName="ESExpressApp/AppShell.xaml.cs" Line="65" Column="10" />
       <File FileName="ESExpressApp/ESExpressApp.csproj" />
       <File FileName="ESExpressApp/Platforms/iOS/UserNotificationCenterDelegate.cs" />
       <File FileName="ESExpressApp/App.xaml.cs" />
@@ -75,16 +75,16 @@
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="ESExpressApp" expanded="True" selected="True">
-            <Node name="ESExpressApp" expanded="True" />
+          <Node name="ESExpressApp" expanded="True">
+            <Node name="ESExpressApp" expanded="True" selected="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.ESExpressApp PreferredExecutionTarget="Android.pixel_5_-_api_32" />
+  <MonoDevelop.Ide.ItemProperties.ESExpressApp PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.pixel_5_-_api_32" />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
