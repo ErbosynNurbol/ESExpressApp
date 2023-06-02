@@ -37,15 +37,11 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>5</string>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
-	<key>NSCameraUsageDescription</key>
-	<string>This allows you to take and upload photos for your profile.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This allows you to upload photos and videos from your gallery to your profile.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

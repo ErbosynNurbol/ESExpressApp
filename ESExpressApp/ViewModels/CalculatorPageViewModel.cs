@@ -19,6 +19,18 @@ namespace ESExpressApp.ViewModels
         [ObservableProperty]
         CalculatorTypeModel selectedCalculatorType;
         private readonly ILocalizationResourceManager resourceManager;
+
+        [ObservableProperty]
+        double width;
+        [ObservableProperty]
+        double length;
+        [ObservableProperty]
+        double height;
+        [ObservableProperty]
+        double weight;
+        [ObservableProperty]
+        double result;
+
         public CalculatorPageViewModel(ILocalizationResourceManager resourceManager)
 		{
             this.resourceManager = resourceManager;
@@ -30,6 +42,25 @@ namespace ESExpressApp.ViewModels
         {
             LoadData();
         }
+        [RelayCommand]
+        private void Calculate()
+        {
+            switch (selectedCalculatorType.Type)
+            {
+                case "air": {
+                        Result = Math.Round(Weight * 7, 2);
+                    }
+                    break;
+                case "truct": {
+                        Result = Math.Round(Weight * 4.7,2);
+                    } break;
+                case "train": {
+                        Result = Math.Round(Weight * 4.9, 2);
+                    } break;
+            }
+          
+        }
+
         private void LoadData()
         {
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)

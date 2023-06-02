@@ -78,18 +78,17 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
           </Grid>
-             <Grid Grid.Row="1" RowDefinitions="80,80,80,25,25" ColumnDefinitions="*,*" RowSpacing="10" Padding="0,15,0,0">
-         <customControls:CalculatorEntryControl Grid.Row="0" Grid.Column="0" ImageUrl="icon_width.png" CTitle="{localization:Translate ls_Width}" Unit=".CM"  />
-         <customControls:CalculatorEntryControl Grid.Row="0" Grid.Column="1" ImageUrl="icon_length.png" CTitle="{localization:Translate ls_Length}" Unit=".CM"/>
+         <Grid Grid.Row="1" RowDefinitions="80,80,80,25,25" ColumnDefinitions="*,*" RowSpacing="10" Padding="0,15,0,0">
+         <customControls:CalculatorEntryControl Grid.Row="0" Grid.Column="0" ImageUrl="icon_width.png"  Text="{Binding  Width}" CTitle="{localization:Translate ls_Width}" Unit=".CM"  />
+         <customControls:CalculatorEntryControl Grid.Row="0" Grid.Column="1" ImageUrl="icon_length.png" Text="{Binding  Length}"  CTitle="{localization:Translate ls_Length}" Unit=".CM"/>
+         <customControls:CalculatorEntryControl Grid.Row="1" Grid.Column="0" ImageUrl="icon_height.png" Text="{Binding  Height}" CTitle="{localization:Translate ls_Length}" Unit=".CM"  />
+         <customControls:CalculatorEntryControl Grid.Row="1" Grid.Column="1" ImageUrl="icon_weight.png" Text="{Binding  Weight}" CTitle="{localization:Translate ls_Weight}" Unit=".KG"/>
 
-         <customControls:CalculatorEntryControl Grid.Row="1" Grid.Column="0" ImageUrl="icon_height.png" CTitle="{localization:Translate ls_Length}" Unit=".CM"  />
-         <customControls:CalculatorEntryControl Grid.Row="1" Grid.Column="1" ImageUrl="icon_weight.png" CTitle="{localization:Translate ls_Weight}" Unit=".KG"/>
-
-        <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="58" Margin="10,0" Text="{localization:Translate ls_Calculate}" BackgroundColor="#03509B" />
+        <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="58" Margin="10,0" Text="{localization:Translate ls_Calculate}" BackgroundColor="#03509B" Command="{Binding CalculateCommand}" />
 
         <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="{localization:Translate ls_Shippingcosts}" HorizontalTextAlignment="Center" FontSize="16" TextColor="#313131" />
 
-        <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="0 тг." FontAttributes="Bold" VerticalTextAlignment="Start" HorizontalTextAlignment="Center" FontSize="24" TextColor="#000000" />
+        <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Result,StringFormat='{0} $.'}" FontAttributes="Bold" VerticalTextAlignment="Start" HorizontalTextAlignment="Center" FontSize="24" TextColor="#000000" />
          </Grid>
         </Grid>
         </mct:StateContainer.StateViews>
