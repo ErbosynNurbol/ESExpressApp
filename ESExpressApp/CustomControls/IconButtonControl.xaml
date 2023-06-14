@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Border xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:localization="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
+             x:Name="this"
+             BackgroundColor="{Binding Source={x:Reference this},Path=BColor}"
+             HeightRequest="25"
+             Padding="5,2"
+             Margin="0"
+             x:Class="ESExpressApp.CustomControls.IconButtonControl">
+       <Border.Resources>
+        <ResourceDictionary>
+            <mct:IsStringNotNullOrEmptyConverter x:Key="IsStringNotNullOrEmptyConverter" />
+        </ResourceDictionary>
+    </Border.Resources>
+    <Border.StrokeShape>
+        <RoundRectangle CornerRadius="5,5,5,5" />
+    </Border.StrokeShape>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Orientation="Horizontal">
+                <Label HorizontalOptions="Start" FontSize="14" Text="{Binding Source={x:Reference this},Path=Icon}" FontFamily="fregular" TextColor="{Binding Source={x:Reference this},Path=TColor}" />
+                <Label IsVisible="{Binding Source={x:Reference this},Path=Title, Converter={StaticResource IsStringNotNullOrEmptyConverter}}" Text="{Binding Source={x:Reference this},Path=Title}" FontSize="12"  MaxLines="2"  HorizontalOptions="Start" TextColor="{Binding Source={x:Reference this},Path=TColor}" />
+        </StackLayout>
+     <Border.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding Source={x:Reference this},Path=ClickCommand}" CommandParameter="{Binding Source={x:Reference this},Path=ClickCommandParameter}"></TapGestureRecognizer>
+     </Border.GestureRecognizers>
+</Border>

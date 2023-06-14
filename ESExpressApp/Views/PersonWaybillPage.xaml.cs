@@ -14,6 +14,6 @@ public partial class PersonWaybillPage : ContentPage
         base.OnAppearing();
         (BindingContext as PersonWaybillPageViewModel).LoadPersonWaybill(ItemId);
     }
-
+  
     public int ItemId { get; set; }
 }

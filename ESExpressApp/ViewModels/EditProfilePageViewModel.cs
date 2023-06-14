@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LocalizationResourceManager.Maui;
+using SkiaSharp;
 
 namespace ESExpressApp.ViewModels
 {
@@ -8,6 +9,12 @@ namespace ESExpressApp.ViewModels
     {
         [ObservableProperty]
         PersonModel person;
+
+        [ObservableProperty]
+        ImageSource avatarSource;
+
+        [ObservableProperty]
+        string localFilePath;
 
         private readonly ILocalizationResourceManager resourceManager;
         public EditProfilePageViewModel(ILocalizationResourceManager resourceManager)
@@ -70,6 +77,7 @@ namespace ESExpressApp.ViewModels
             if (ajaxMsg != null && ajaxMsg.Status.Equals("Success", StringComparison.OrdinalIgnoreCase))
             {
                 Person = JsonHelper.DeserializeObject<PersonModel>(ajaxMsg.Data.ToString());
+                AvatarSource = ImageSource.FromUri(new Uri(Person.AvatarUrl));
                 CurrentState = States.Success;
             }
             else
@@ -85,14 +93,112 @@ namespace ESExpressApp.ViewModels
             GoToAsync($"{nameof(ChangePhoneNumberPage)}");
         }
 
-        [RelayCommand]
-        private void UploadAvatar()
+        #region Файлды сақтау кеңейтімін алу  GetSaveFormat(string filePath)
+        private static SKEncodedImageFormat GetSaveFormat(string filePath)
         {
-            GoToAsync($"{nameof(UploadAvatarPage)}");
+            string fileFormat = Path.GetExtension(filePath).ToLower();
+            SKEncodedImageFormat saveFormat = SKEncodedImageFormat.Png;
+            switch (fileFormat)
+            {
+                case ".png":
+                    {
+                        saveFormat = SKEncodedImageFormat.Png;
+                    }
+                    break;
+                case ".jpg":
+                case ".jpeg":
+                    {
+                        saveFormat = SKEncodedImageFormat.Jpeg;
+                    }
+                    break;
+                case ".gif":
+                    {
+                        saveFormat = SKEncodedImageFormat.Gif;
+                    }
+                    break;
+            }
+            return saveFormat;
+        }
+        #endregion
+
+        [RelayCommand]
+        private async Task UploadAvatarAsync()
+        {
+            //if (MediaPicker.Default.IsCaptureSupported)
+            //{
+
+            //}
+            FileResult photo = await MediaPicker.Default.PickPhotoAsync();
+            if (photo != null)
+            {
+                // save the file into local storage
+                //LocalFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
+                //using Stream sourceStream = await photo.OpenReadAsync();
+                //using FileStream localFileStream = File.OpenWrite(LocalFilePath);
+                //await sourceStream.CopyToAsync(localFileStream);
+                //AvatarSource = ImageSource.FromFile(LocalFilePath);
+
+
+                using Stream sourceStream = await photo.OpenReadAsync();
+                //using Stream sourceStream = await photo.OpenReadAsync();
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    await sourceStream.CopyToAsync(stream);
+                    var fileBytes = stream.ToArray();
+                    SKBitmap skBitmap = SkiaSharp.SKBitmap.Decode(fileBytes);
+                    //Resize
+                    int thumbnailWidth = skBitmap.Width > 1000 ? 1000 : skBitmap.Width;
+                    int thumbnailHeight = skBitmap.Height * 1000 / skBitmap.Width;
+                    if (thumbnailHeight > skBitmap.Height)
+                        thumbnailHeight = skBitmap.Height;
+                    SKBitmap thumbnailBitmap = skBitmap.Resize(new SKImageInfo(thumbnailWidth, thumbnailHeight), SKFilterQuality.High);
+                    SKRect dest = new SKRect(0, 0, thumbnailWidth, thumbnailHeight);
+                    float pointX = thumbnailWidth > thumbnailHeight ? (thumbnailWidth - thumbnailHeight) / 2 : 0;
+                    float pointY = thumbnailHeight > thumbnailWidth ? (thumbnailHeight - thumbnailWidth) / 2 : 0;
+                    int croppedWidth, croppedHeight;
+                    croppedWidth = croppedHeight = thumbnailWidth > thumbnailHeight ? thumbnailHeight : thumbnailWidth;
+                    SKRect source = new SKRect(pointX, pointY,
+                                               pointX + croppedWidth, pointY + croppedHeight);
+                    SKBitmap croppedBitmap = new SKBitmap(croppedWidth, croppedHeight);
+                    using (SKCanvas canvas = new SKCanvas(croppedBitmap))
+                    {
+                        canvas.DrawBitmap(thumbnailBitmap, source, dest);
+                    }
+
+                    SKEncodedImageFormat saveFormat = GetSaveFormat(photo.FileName);
+                    LocalFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
+                    using (var image = SKImage.FromBitmap(croppedBitmap))
+                    using (var data = image.Encode(saveFormat, 100))
+                    using (var streamLocalFile = File.OpenWrite(LocalFilePath))
+                    {
+                        // save the data to a stream
+                        data.SaveTo(streamLocalFile);
+                    }
+                    AvatarSource = ImageSource.FromFile(LocalFilePath);
+                }
+            }
         }
         [RelayCommand]
         private void Save()
         {
+            AjaxMsgModel ajaxMsg = null;
+            if (!string.IsNullOrEmpty(LocalFilePath) && File.Exists(LocalFilePath))
+            {
+                using (Stream stream = File.OpenRead(LocalFilePath))
+                {
+                    var skData = SKData.Create(stream);
+                    SKBitmap skBitmap = SKBitmap.Decode(skData);
+                    Stream streamData = SKImage.FromBitmap(skBitmap).Encode().AsStream();
+                    ajaxMsg = APIHelper.UploadAvatar(streamData);
+                    if (ajaxMsg != null && ajaxMsg.Status.Equals("success"))
+                    {
+                        LoginInfoModel loginInfo = AppSingleton.GetInstance().GetLoginInfo();
+                        loginInfo.UserInfo.AvatarUrl = ajaxMsg.Data.ToString();
+                        AppSingleton.GetInstance().SetLoginInfo(loginInfo);
+                        Toast.Make(ajaxMsg?.Message).Show();
+                    }
+                }
+            }
             var dicParameters = new Dictionary<string, string>
                     {
                       {"realName", Person.RealName??string.Empty},
@@ -100,7 +206,7 @@ namespace ESExpressApp.ViewModels
                       {"whatsApp", Person.WhatsApp??string.Empty},
                       {"secondaryPhone", Person.SecondaryPhone??string.Empty} 
                     };
-            AjaxMsgModel ajaxMsg = APIHelper.Query($"/api/send/PersonInfo", dicParameters);
+            ajaxMsg = APIHelper.Query($"/api/send/PersonInfo", dicParameters);
             if (ajaxMsg != null && ajaxMsg.Status.Equals("Success", StringComparison.OrdinalIgnoreCase))
             {
                 if (ajaxMsg.Status.Equals("success", StringComparison.OrdinalIgnoreCase))

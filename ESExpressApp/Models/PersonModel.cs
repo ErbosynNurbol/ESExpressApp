@@ -1,18 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ESExpressApp.Models
 {
-    public class PersonModel
+    public partial class PersonModel : ObservableObject
     {
-        public int CountryId { get; set; }
-        public string AvatarUrl { get; set; }
-        public string PersonCode { get; set; }
-        public string Phone { get; set; }
-        public string RealName { get; set; }
-        public string City { get; set; }
-        public string WhatsApp { get; set; }
-        public string SecondaryPhone { get; set; }
+        [ObservableProperty]
+        private int countryId;
+        [ObservableProperty]
+        private string avatarUrl;
+        [ObservableProperty]
+        private string personCode;
+        [ObservableProperty]
+        private string phone;
+        [ObservableProperty]
+        private string realName;
+        [ObservableProperty]
+        private string city;
+        [ObservableProperty]
+        private string whatsApp;
+        [ObservableProperty]
+        private string secondaryPhone;
     }
 }

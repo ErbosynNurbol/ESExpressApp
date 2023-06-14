@@ -2,15 +2,16 @@
 
 public partial class NotshippedListPage : ContentPage
 {
-	public NotshippedListPage(ViewModels.NotshippedListPageViewModel vm)
+    ViewModels.NotshippedListPageViewModel vm;
+    public NotshippedListPage(ViewModels.NotshippedListPageViewModel vm)
 	{
 		InitializeComponent();
-		BindingContext = vm;
+		BindingContext = this.vm = vm;
 	}
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        (BindingContext as NotshippedListPageViewModel).RefreshCommand.Execute(null);
+        this.vm.RefreshCommand.Execute(null);
     }
 }

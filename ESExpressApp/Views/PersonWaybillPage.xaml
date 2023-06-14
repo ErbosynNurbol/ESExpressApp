@@ -44,7 +44,8 @@
        <StackLayout Orientation="Vertical" Spacing="30" Padding="10,40,10,0">
         <customControls:StandardEntryControl Placeholder="{localization:Translate ls_Waybillnumber}" Text="{Binding PersonIncomingPackage.PersonWaybill.WaybillNumber}" />
         <customControls:StandardEntryControl Placeholder="{localization:Translate ls_ProductName}" Text="{Binding PersonIncomingPackage.PersonWaybill.ProductName}" />
-            <CollectionView
+          <Grid HeightRequest="90">
+                <CollectionView
                          Margin="10,0"
                          SelectionMode="Single"
                          ItemsSource="{Binding PersonIncomingPackage.ShippingMethodList}"
@@ -65,6 +66,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            </Grid>
            <Editor Text="{Binding PersonIncomingPackage.PersonWaybill.ClientRemark}" Margin="10,0" Placeholder="{localization:Translate ls_Remark}" BackgroundColor="#EEEEEE" TextColor="#A5A5A5" HeightRequest="100" />    
         <Button Text="{Binding AddOrEditButtonText}" IsEnabled="{Binding EnableEditButton}" HeightRequest="58" FontSize="20" Margin="10,0" CornerRadius="14" TextColor="White" BackgroundColor="{StaticResource Primary}" Command="{Binding AddOrEditCommand}" />
     </StackLayout>

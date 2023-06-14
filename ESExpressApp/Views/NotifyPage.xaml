@@ -28,8 +28,9 @@
           <StackLayout mct:StateView.StateKey="Success" VerticalOptions="FillAndExpand" Orientation="Vertical" Padding="0,10,0,0">
            <Label Text="{localization:Translate ls_Notifications}" Padding="10,10" FontSize="26" FontAttributes="Bold" TextColor="White" VerticalTextAlignment="Center"  />
            <RefreshView IsRefreshing="{Binding IsRefreshing}" BackgroundColor="White"
-             Command="{Binding RefreshCommand}"  VerticalOptions="FillAndExpand" >
-                         <CollectionView 
+             Command="{Binding RefreshCommand}" VerticalOptions="FillAndExpand">
+                       <Grid>
+                          <CollectionView 
                         ItemsSource="{Binding PushLogList}"
                         SelectionMode="None"
                         RemainingItemsThreshold="1"
@@ -38,22 +39,25 @@
                         >
                             <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="models:PushLogModel">
-                                <Grid Padding="0,15,0,0">
-                                    <Frame BackgroundColor="#eeeeee" CornerRadius="5" Padding="15,5" Margin="0">
+                               <Grid Padding="10,10,10,0">
+                                         <Frame BackgroundColor="#eeeeee" CornerRadius="5" Padding="15,5">
                                         <StackLayout >
                                             <Label Text="{Binding Title}" FontSize="16" TextColor="#212529"/>
-                                            <Label Text="{Binding Body}" FontSize="12" TextColor="#212529"/>
+                                            <Label Text="{Binding Body}" MaxLines="2" LineBreakMode="CharacterWrap" FontSize="12" TextColor="#212529"/>
                                             <BoxView  BackgroundColor="#737373" HeightRequest="1" HorizontalOptions="FillAndExpand"/>
                                             <Label Text="{Binding PushTime}" HorizontalOptions="End" HorizontalTextAlignment="End" FontSize="12" TextColor="#333333"/>
                                         </StackLayout>
-                                    </Frame>
-                                </Grid>
+                                </Frame>
+
+                                    </Grid>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                         <CollectionView.EmptyView>
                             <customControls:EmptyControl />
                         </CollectionView.EmptyView>
                     </CollectionView>
+
+                    </Grid>
             </RefreshView>
         </StackLayout>
         </mct:StateContainer.StateViews>

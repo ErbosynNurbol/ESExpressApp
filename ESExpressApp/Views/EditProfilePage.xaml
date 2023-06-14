@@ -29,22 +29,21 @@
                      <ScrollView  VerticalScrollBarVisibility="Never">
                         <StackLayout VerticalOptions="FillAndExpand" Orientation="Vertical" Padding="10,30,10,0">
                               <Grid>
-                                  <mct:AvatarView ImageSource="{Binding Person.AvatarUrl}" HorizontalOptions="Center" HeightRequest="106" WidthRequest="106" CornerRadius="53" />
+                                  <mct:AvatarView ImageSource="{Binding AvatarSource}" HorizontalOptions="Center" HeightRequest="106" WidthRequest="106" CornerRadius="53" />
                                   <Frame  CornerRadius="19" Margin="0,0,-50,0" Padding="5"  WidthRequest="38" HeightRequest="38" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="#ffffff" HasShadow="True"  >
                                      <Label Text="{x:Static fontAwesome:FontAwesomeIcons.CameraRetro}"
-                                        IsVisible="False"
+                                        IsVisible="True"
                                         x:Name="lblUploadAvatar"
                                         FontFamily="fregular"
                                         FontAttributes="Bold"
                                         TextColor="{StaticResource Primary}"
                                         FontSize="20"
                                         HorizontalTextAlignment="Center"
-                                        VerticalTextAlignment="Center" >
-                                           <Label.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding UploadAvatarCommand}"></TapGestureRecognizer>
-                                            </Label.GestureRecognizers>
-                                         </Label>
-                                </Frame>
+                                        VerticalTextAlignment="Center" />
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding UploadAvatarCommand}"></TapGestureRecognizer>
+                                </Frame.GestureRecognizers>
+                            </Frame>
                               </Grid>
                         <StackLayout Orientation="Vertical" Spacing="5">
                           <Label Text="{localization:Translate ls_Phone}" Margin="10,0" VerticalTextAlignment="End" HeightRequest="30"/>

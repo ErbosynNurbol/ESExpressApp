@@ -18,5 +18,5 @@
                                 FontFamily="{Binding IconFontFamily}" 
                                 FontAttributes="Bold" 
                                 FontSize="24" />
-              <Label Grid.Column="1" Text="{Binding Title}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="14" MaxLines="2" TextColor="Black" />
+              <Label Grid.Column="1" Text="{Binding Title}" LineBreakMode="TailTruncation" VerticalOptions="Center" FontSize="14" TextColor="Black" />
 </Grid>

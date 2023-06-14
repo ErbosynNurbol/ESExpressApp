@@ -13,8 +13,8 @@ namespace ESExpressApp.Helpers
 {
    public class APIHelper
     {
-        public const string baseAddress = "https://www.esexpress.kz";
-        //public static string baseAddress = DeviceInfo.Current.Platform == DevicePlatform.iOS ? "http://127.0.0.1:5091": "http://10.0.2.2:5091";
+        public const string baseAddress = "https://esexpress.kz";
+        //public static string baseAddress = DeviceInfo.Current.Platform == DevicePlatform.iOS ? "http://127.0.0.1:5231" : "http://10.0.2.2:5231";
         private static readonly HttpClient _httpClient = new HttpClient();
         public static Models.AjaxMsgModel Query(string path,Dictionary<string, string> dicParameters)
         {
@@ -74,11 +74,6 @@ namespace ESExpressApp.Helpers
                         _httpClient.BaseAddress = new Uri(baseAddress);
                         _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     }
-                    var dicData = new Dictionary<string, string>
-                    {
-                      {"language", AppSingleton.GetInstance().GetCurrentLanguage()?.Culture},
-                      {"qarToken", AppSingleton.GetInstance().GetLoginInfo()?.QarToken}
-                    };
                     var content = new MultipartFormDataContent();
                     content.Add(new StringContent(AppSingleton.GetInstance().GetCurrentLanguage()?.Culture), "language");
                     content.Add(new StringContent(AppSingleton.GetInstance().GetLoginInfo()?.QarToken), "qarToken");
@@ -93,9 +88,12 @@ namespace ESExpressApp.Helpers
                         ajaxMsg = JsonHelper.DeserializeObject<AjaxMsgModel>(returnValue);
                     }
                 }
-                catch
+                catch(Exception ex)
                 {
-                    ajaxMsg = null;
+                    ajaxMsg = new AjaxMsgModel() {
+                        Status = "error",
+                        Message = ex.Message
+                    };
                 }
                 return ajaxMsg;
             }).Result;

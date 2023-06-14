@@ -42,7 +42,6 @@ namespace ESExpressApp.ViewModels
             IsLoading = true;
             int start = PersonWaybillList.Count;
             LoadPersonWaybillList(start);
-            IsLoading = false;
         }
 
         [RelayCommand]

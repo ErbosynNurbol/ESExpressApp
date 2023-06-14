@@ -45,7 +45,7 @@ namespace ESExpressApp.ViewModels
         [RelayCommand]
         private void Calculate()
         {
-            switch (selectedCalculatorType.Type)
+            switch (SelectedCalculatorType.Type)
             {
                 case "air": {
                         Result = Math.Round(Weight * 7, 2);
@@ -88,7 +88,13 @@ namespace ESExpressApp.ViewModels
                     IconImage ="train"
                 }
             };
-            SelectedCalculatorType = CalculatorTypeList.FirstOrDefault();
+            _ = Task.Run(async () => {
+                await Task.Delay(100);
+                AppShell.Current.Dispatcher.Dispatch(() => {
+                    SelectedCalculatorType = CalculatorTypeList.FirstOrDefault();
+                    OnPropertyChanged(nameof(SelectedCalculatorType));
+                });
+            });
             CurrentState = States.Success;
             IsBusy = false;
         }

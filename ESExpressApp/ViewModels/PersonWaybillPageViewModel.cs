@@ -50,25 +50,41 @@ namespace ESExpressApp.ViewModels
                 }
                 else
                 {
-                    AddOrEditButtonText = this.resourceManager["ls_Add"];
+                    if (PersonIncomingPackage.PersonWaybill.Id > 0)
+                    {
+                        AddOrEditButtonText = this.resourceManager["ls_Save"];
+                    }
+                    else
+                    {
+                        AddOrEditButtonText = this.resourceManager["ls_Add"];
+                    }
+                        
                 }
                 VisibleShippingMethod = PersonIncomingPackage.PersonWaybill?.ParentId == 0;
-                if (PersonIncomingPackage.PersonWaybill.PackagingTypeId > 0)
-                {
-                    SelectedPackagingType = PersonIncomingPackage.PackagingTypeList.FirstOrDefault(p => p.Id == PersonIncomingPackage.PersonWaybill.PackagingTypeId);
-                }
-                else
-                {
-                    SelectedPackagingType = null;
-                }
-                if (PersonIncomingPackage.PersonWaybill.ShippingMethodId > 0)
-                {
-                    SelectedShippingMethod = PersonIncomingPackage.ShippingMethodList.FirstOrDefault(p => p.Id == PersonIncomingPackage.PersonWaybill.ShippingMethodId);
-                }
-                else
-                {
-                    SelectedShippingMethod = PersonIncomingPackage.ShippingMethodList[0];
-                }
+              
+                _ = Task.Run(async () => {
+                    await Task.Delay(100);
+                    AppShell.Current.Dispatcher.Dispatch(() => {
+                        if (PersonIncomingPackage.PersonWaybill.PackagingTypeId > 0)
+                        {
+                            SelectedPackagingType = PersonIncomingPackage.PackagingTypeList.FirstOrDefault(p => p.Id == PersonIncomingPackage.PersonWaybill.PackagingTypeId);
+                        }
+                        else
+                        {
+                            SelectedPackagingType = null;
+                        }
+                        OnPropertyChanged(nameof(SelectedPackagingType));
+                        if (PersonIncomingPackage.PersonWaybill.ShippingMethodId > 0)
+                        {
+                            SelectedShippingMethod = PersonIncomingPackage.ShippingMethodList.FirstOrDefault(p => p.Id == PersonIncomingPackage.PersonWaybill.ShippingMethodId);
+                        }
+                        else
+                        {
+                            SelectedShippingMethod = PersonIncomingPackage.ShippingMethodList[0];
+                        }
+                        OnPropertyChanged(nameof(SelectedShippingMethod));
+                    });
+                });
             }
         }
 
@@ -94,12 +110,14 @@ namespace ESExpressApp.ViewModels
             {
                 if (manageType.Equals("edit"))
                 {
-                    Toast.Make(ajaxMsg.Message).Show().ContinueWith((x) => Shell.Current.GoToAsync("..", true));
+                    Toast.Make(ajaxMsg.Message).Show();
+                    GoToAsync("..", true);
                 }
                 else
                 {
                     ResultText = ajaxMsg.Message;
-                    Toast.Make(ajaxMsg.Message).Show().ContinueWith((x) => Shell.Current.GoToAsync("..", true));
+                    Toast.Make(ajaxMsg.Message).Show();
+                    GoToAsync("..", true);
                 }
             }
             else

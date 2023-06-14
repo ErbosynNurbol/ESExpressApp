@@ -17,11 +17,6 @@ namespace ESExpressApp.Models
         public int count;
         [ObservableProperty]
         public bool showCount;
-       
-        
-        
-       
-      
     }
 }
 

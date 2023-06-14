@@ -43,6 +43,13 @@ namespace ESExpressApp.ViewModels
                             };
             SetDefaultLanguage();
             LoadData();
+            //_ = Task.Run(async () => {
+            //    await Task.Delay(100);
+            //    Dispatcher.Dispatch(() => {
+            //        HWorkList = new ObservableCollection<object>(HWorkList);
+            //        OnPropertyChanged(nameof(HWorkList));
+            //    });
+            //});
         }
 
         [RelayCommand]
@@ -139,10 +146,17 @@ namespace ESExpressApp.ViewModels
                             hWork.IconUnicode = FontAwesomeHelper.GetFontUnicodeValueByClass(hWork.Icon);
                             hWork.IconFontFamily = FontAwesomeHelper.GetFontFamilyNameByClass(hWork.Icon);
                             hWork.ThumbnailUrl = hWork.ThumbnailUrl.Replace("_small.","_middle.");
-                        }
-                        HWorkList = indexData?.HWorkList;
-                        HWorkHeight = HWorkList.Count() * 67.0;
-                        HWorkSelected = HWorkList[0];
+                        } 
+                        _ = Task.Run(async () => {
+                            await Task.Delay(100);
+                          AppShell.Current.Dispatcher.Dispatch(() => {
+                              HWorkList = indexData?.HWorkList;
+                              HWorkHeight = HWorkList.Count() * 67.0;
+                              HWorkSelected = HWorkList[0];
+                              //this.vm.HWorkList = new System.Collections.ObjectModel.ObservableCollection<HWorkModel>();
+                              OnPropertyChanged(nameof(HWorkSelected));
+                            });
+                        });
                     }
 
                     ClientsSayList = indexData?.ClientsSayList;

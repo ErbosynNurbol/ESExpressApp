@@ -4,14 +4,16 @@ namespace ESExpressApp.Views;
 
 public partial class HomePage : ContentPage
 {
-	public HomePage(ViewModels.HomePageViewModel vm)
+    ViewModels.HomePageViewModel vm;
+    public HomePage(ViewModels.HomePageViewModel vm)
 	{
 		InitializeComponent();
-		BindingContext = vm;
+		BindingContext = this.vm = vm;
 	}
     protected override void OnAppearing()
     {
         base.OnAppearing();
+      
     }
     void OnPreviousButtonClicked(System.Object sender, System.EventArgs e)
     {

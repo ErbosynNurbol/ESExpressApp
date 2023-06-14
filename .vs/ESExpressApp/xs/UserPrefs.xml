@@ -1,34 +1,28 @@
 ﻿<Properties StartupConfiguration="{3483997C-E47A-4AAF-AB92-43F3F3EA31FA}|Default">
+  <MonoDevelop.Ide.Workbench>
+    <Files>
+      <File FileName="ESExpressApp/ESExpressApp.csproj" Line="39" Column="12" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ESExpressApp" expanded="True">
+            <Node name="ESExpressApp" expanded="True" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.46" />
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.00008120-000815802E6BC01E" />
-  <MonoDevelop.Ide.ItemProperties.ESExpressApp PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.00008120-000815802E6BC01E" />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/erbosynnurbol/Documents/GitHub/ESExpressApp/ESExpressApp/Platforms/iOS/UserNotificationCenterDelegate.cs" relfile="ESExpressApp/Platforms/iOS/UserNotificationCenterDelegate.cs" line="25" column="1" />
       <Breakpoint file="/Users/erbosynnurbol/Documents/GitHub/ESExpressApp/ESExpressApp/Platforms/iOS/UserNotificationCenterDelegate.cs" relfile="ESExpressApp/Platforms/iOS/UserNotificationCenterDelegate.cs" line="13" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="ESExpressApp/AppShell.xaml.cs">
-    <Files>
-      <File FileName="ESExpressApp/AppShell.xaml" Line="1" Column="1" />
-      <File FileName="ESExpressApp/AppShell.xaml.cs" Line="94" Column="1" />
-    </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="ESExpressApp" expanded="True">
-            <Node name="ESExpressApp" expanded="True">
-              <Node name="Views" expanded="True" />
-              <Node name="AppShell.xaml" expanded="True">
-                <Node name="AppShell.xaml.cs" selected="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.pixel_5_-_api_32" />
+  <MonoDevelop.Ide.ItemProperties.ESExpressApp PreferredExecutionTarget="Android.pixel_5_-_api_32" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MultiItemStartupConfigurations />
 </Properties>

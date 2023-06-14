@@ -27,36 +27,37 @@
             </VerticalStackLayout>
          <RefreshView mct:StateView.StateKey="Success" IsRefreshing="{Binding IsRefreshing}"
              Command="{Binding RefreshCommand}"  VerticalOptions="FillAndExpand" >
- <CollectionView x:Name="personWaybillList" ItemsSource="{Binding PersonWaybillList}" RemainingItemsThreshold="1" RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}">
+            <Grid>
+                     <CollectionView x:Name="personWaybillList" Margin="10" ItemsSource="{Binding PersonWaybillList}" RemainingItemsThreshold="1" RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}">
     <CollectionView.ItemTemplate>
         <DataTemplate x:DataType="models:PackageInfoModel">
-      <SwipeView>
-    <SwipeView.RightItems>
-        <SwipeItems>
-            <SwipeItemView Command="{Binding Source={x:Reference personWaybillList}, Path=BindingContext.SearchCommand}" CommandParameter="{Binding .}">
-                <Grid WidthRequest="80" RowDefinitions="25,*" VerticalOptions="FillAndExpand"  BackgroundColor="#21a9e1">
-                        <Label Grid.Row="0" VerticalTextAlignment="End" VerticalOptions="EndAndExpand" HorizontalOptions="Center" FontSize="16" Text="{x:Static fontAwesome:FontAwesomeIcons.Search}" FontFamily="fregular" TextColor="White" />
-                        <Label Grid.Row="1" Text="{localization:Translate ls_Search}" FontSize="12" MaxLines="2" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="White" />
-                </Grid>
-            </SwipeItemView>
-        </SwipeItems>
-    </SwipeView.RightItems>
-   <Grid RowDefinitions="20,40" HeightRequest="60" ColumnDefinitions="100,*" RowSpacing="10" ColumnSpacing="10" Margin="5">
-                    <Image Grid.RowSpan="2"
+         <Border Stroke="#dee2e6">
+                                      <Grid RowDefinitions="50" ColumnDefinitions="100,*,30" RowSpacing="10"  ColumnSpacing="10" Margin="10">
+                    <Image Grid.Column="0"
                            Source="{Binding ShippingImage}"
                            Aspect="AspectFill" />
-                    <Label Grid.Column="1"
-                           Text="{Binding WaybillNumber}"
-                           VerticalOptions="End"
-                           FontAttributes="Bold" />
-                    <Label Grid.Row="1"
-                           Grid.Column="1"
-                           Text="{Binding ProductName}"
-                           MaxLines="2"
-                           VerticalOptions="Start" />
+                                <StackLayout Grid.Column="1" Orientation="Vertical">
+                                     <Label 
+                                            Text="{Binding WaybillNumber}"
+                                            VerticalOptions="End"
+                                            FontAttributes="Bold" />
+                                    <Label Text="{Binding ProductName}"
+                                           FontSize="14"
+                                           MaxLines="2"
+                                           VerticalOptions="Start" />
+                                </StackLayout>
+                     <StackLayout  Grid.Column="2" Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center" >
+                              <customControls:IconButtonControl
+                                        Icon="{x:Static fontAwesome:FontAwesomeIcons.Search}"
+                                        BColor="#21a9e1"
+                                        TColor="#ffffff"
+                                        ClickCommand="{Binding Source={x:Reference personWaybillList}, Path=BindingContext.SearchCommand}"
+                                        ClickCommandParameter="{Binding .}"
+                                        />   
+                    </StackLayout>
  </Grid>
-</SwipeView>
-            
+
+                                </Border>
         </DataTemplate>
     </CollectionView.ItemTemplate>
        <CollectionView.EmptyView>
@@ -68,6 +69,7 @@
           </StackLayout>        
    </CollectionView.Footer>
 </CollectionView>
+                </Grid>
         </RefreshView>
         </mct:StateContainer.StateViews>
    </StackLayout>
